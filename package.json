@@ -1,0 +1,26 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.5",
+    "consolidate": "^0.16.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^3.8.40",
+    "mustache": "^4.1.0",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1"
+  }
+}
