@@ -3,40 +3,24 @@ const bodyParser = require('body-parser');
 const engines = require('consolidate');
 
 const {requestHandler, errorHandler} = require('./middleware');
-const {mainRouter} = require('./routes');
+
+const {router: crawlerRoutes} = require('./routes/crawler');
 const viewRouter = require('./routes/view');
 
-const mongodb = require('./database/mongo');
-
+const crawl = require('./utility/crawl');
 
 const PORT = 4000;
 
-const {Contents, contentShema} = require('./database/model/contents');
+const dbm = require('./database/mariadb')
+const config = require('./config')
 
-(function(){
+const app = express();
 
-  mongodb.init();
-  
-  let cont = new Contents({
-    name: 'hello world!',
-    url: 'https://test.com',
-    meta: {
-      category1: 'cate1' ,
-      category2: 'cate2' 
-    },
-    title: 'test 1',    
-    content: 'test 2',
-    status: 999
-  });
+(async function (){
 
-  console.log(1);
-  
-  (async function(){
-    await cont.save();
-  })();
-  console.log(3);
-  return; 
-  const app = express();
+  config.init();
+
+  await dbm.init();
 
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
@@ -55,10 +39,16 @@ const {Contents, contentShema} = require('./database/model/contents');
   app.use(express.static(__dirname + '/public'));
 
   app.use(viewRouter);
-  app.use('/api', mainRouter);
+  app.use('/api', crawlerRoutes);
+
+})().then(()=>{
 
   app.listen(PORT, ()=>{
     console.log(`server listen :: ${PORT}`);
   });
 
-})();
+}).catch(err=>{
+
+  console.log(err);
+
+});

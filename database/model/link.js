@@ -2,16 +2,14 @@
 module.exports = function(sequelize, Sequelize){
   const {Model, DataTypes} = Sequelize;
 
-  class Contents extends Model {}
-  Contents.init({
+  class Link extends Model {}
+  Link.init({
     url: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true,
     },
-    name: {
-        type: DataTypes.STRING,
-    },
-    title: {
+    text: {
         type: DataTypes.STRING,
     },
     opt1: {
@@ -29,15 +27,9 @@ module.exports = function(sequelize, Sequelize){
     opt5: {
         type: DataTypes.STRING,
     },
-    content: {
-        type: DataTypes.TEXT,
-    },
     status: {
         type: DataTypes.STRING,
         defaultValue: 0
-    },
-    lastmod: {
-        type: DataTypes.DATE,
     },
     createDt: {
       type: DataTypes.DATE,
@@ -46,9 +38,9 @@ module.exports = function(sequelize, Sequelize){
   }, {
     sequelize,
     timestamps: false,
-    modelName: 'contents',
-    tableName: 'contents'
+    modelName: 'link',
+    tableName: 'link'
   });
 
-  return Contents;
+  return Link;
 }
