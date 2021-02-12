@@ -14,8 +14,23 @@ router.get('/', async (req, res, next)=>{
       raw: true
     })
 
+    var whereCondition = {};
+
+    if(req.query.status){
+      whereCondition['status'] = req.query.status;
+    }
+
+    const op = dbm.sequelize;
+
     let contents = await dbm.Contents.findAll({
+      attributes: {
+        include: [
+          [op.fn('date_format', op.col('lastmod'), '%Y-%m-%d'), 'moddt'],
+          [op.fn('date_format', op.col('createDt'), '%Y-%m-%d'), 'crawldt']
+        ]
+      },
       limit: 50,
+      where: whereCondition,
       raw: true,
       order: [['lastmod', 'desc']]
     });

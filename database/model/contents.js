@@ -37,7 +37,7 @@ module.exports = function(sequelize, Sequelize){
         defaultValue: 0
     },
     lastmod: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATE
     },
     createDt: {
       type: DataTypes.DATE,
