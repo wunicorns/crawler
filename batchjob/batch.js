@@ -1,8 +1,8 @@
 const cp = require('child_process');
 const numCPUs = require('os').cpus().length;
 
-const dbm = require('./database/mariadb')
-const config = require('./config')
+const dbm = require('../database/mariadb')
+const config = require('../config')
 
 config.init();
 
@@ -20,7 +20,8 @@ dbm.init().then(async ()=>{
 
   for(var i = 0 ; i < numCPUs ; i++){
 
-    const job = cp.fork(`${__dirname}/utility/job.js`, [i]);
+    // const job = cp.fork(`${__dirname}/utility/job.js`, [i]);
+    const job = cp.fork(`./utility/job.js`, [i]);
 
     job.on('message', (m) => {
 

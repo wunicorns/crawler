@@ -1,14 +1,20 @@
-const cp = require('child_process');
-const numCPUs = require('os').cpus().length;
+// const cp = require('child_process');
+// const numCPUs = require('os').cpus().length;
 
-const dbm = require('./database/mariadb')
-const config = require('./config')
+const dbm = require('../database/mariadb')
+const config = require('../config')
 
-const crawl = require('./utility/crawl');
+const crawl = require('../utility/crawl');
+const logger = require('../utility/logger');
+const service = require('../service/contentsCrawler')
 
-config.init();
+module.exports.daily = async function(){
 
-dbm.init().then(async ()=>{
+  console.log('daily job start')
+
+  config.init();
+
+  await dbm.init();
 
   const domain = 'https://www.mimint.co.kr';
 
@@ -22,6 +28,7 @@ dbm.init().then(async ()=>{
 
   let links = [];
   for( const url of urls ){
+    logger.info(' crawl :: ' + url);
     const $ = await crawl.getDocument(domain + url);
     for(const a of $(".wrap_left").find("a")){
       let href = a.attribs['href'];
@@ -37,17 +44,31 @@ dbm.init().then(async ()=>{
     const $ = await crawl.getDocument(domain + link);
     console.log(link);
     for(const tr of $("div.board_list_wrap tbody").find("tr")){
-      const childs = $(tr).find("td");
-      const dt = childs[childs.length - 1].children[0].data;
-      const url = domain + childs[0].children.filter((el,i)=>el.name==='a')[0].attribs['href'];
-      console.log(url, new Date(dt));
-      const chk = await dbm.Contents.count({where: {url: url}});
-      if(chk>0) continue;
-      let inserted = await dbm.Contents.create({
-        url: url,
-        lastmod: new Date(dt)
-      });
-      console.log(inserted.id);
+      try {
+        const childs = $(tr).find("td");
+        const dt = childs[childs.length - 1].children[0].data;
+        const url = domain + childs[0].children.filter((el,i)=>el.name==='a')[0].attribs['href'];
+
+        // console.log(url, new Date(dt));
+        // const chk = await dbm.Contents.count({where: {url: url}});
+        // if(chk>0) await dbm.Contents.destroy({where: {url: url}});
+
+        let value = await service.crawlContentDetail({
+          url: url,
+          status: 3,
+          lastmod: new Date(dt)
+        });
+
+        let inserted = await dbm.Contents.create(value);
+
+        await service.parseContent(inserted);
+
+        console.log(' \t :: ', inserted.id);
+
+      } catch (error){
+        console.log(error);
+        logger.error(error);
+      }
     }
   }
 
@@ -69,7 +90,5 @@ dbm.init().then(async ()=>{
   //   console.error(`child process error ${code}`);
   // });
 
-})
-.catch(err=>{
-  console.error(err);
-});
+
+}

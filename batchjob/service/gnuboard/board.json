@@ -16,7 +16,7 @@
   , "bo_link_level": "1"
   , "bo_count_delete": "1"
   , "bo_count_modify": "1"
-  , "bo_read_point": "-1"
+  , "bo_read_point": "0"
   , "bo_write_point": "5"
   , "bo_comment_point": "1"
   , "bo_download_point": "-20"

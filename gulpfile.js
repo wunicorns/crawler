@@ -9,12 +9,10 @@ const dbm = require('./database/mariadb')
 const config = require('./config')
 
 const logger = require('./utility/logger');
-// const zombie = require('zombie')
 
 global.globalRequire = function(libPath) {
   return require(path.join(__dirname + '/' + libPath))
 }
-
 
 const SITE_DOMAIN = 'webcnt.redpost.co.kr';
 const SITE_ADRESS = `http://${SITE_DOMAIN}`;
@@ -39,27 +37,14 @@ const headers = {
   , 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36'
 }
 
-// zombie.waitDuration = '30s';
-// const browser = new zombie(headers);
-
-
-// {
-//   webcnt
-//   webcnt1!Q
-//   webcnt
-//   localhost:3306
-// }
-
-// category
-// daily batch
-// content images get
-// write to site
-
 function clean(cb){
   console.log(`clean run`);
   cb();
 }
 
+/*
+* console print contents groups
+*/
 gulp.task('category', async function  (cb){
 
   config.init();
@@ -85,9 +70,13 @@ gulp.task('category', async function  (cb){
 
 });
 
+/*
+* contents database -> gnuboard article
+* status === 3 inserted  not yet
+*/
 gulp.task('contents:parse', async function(cb){
 
-  logger.info('start !!! ');
+  logger.info(' running contents:parse !!!!! ');
 
   config.init();
 
@@ -97,7 +86,7 @@ gulp.task('contents:parse', async function(cb){
 
   const service = require('./service/contentsCrawler')
 
-  let contentsList = await dbm.sequelize.query(' select id from contents where status = 1 '
+  let contentsList = await dbm.sequelize.query(' select id from contents where status = 3 '
     , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
 
   for(const content of contentsList){
@@ -108,7 +97,7 @@ gulp.task('contents:parse', async function(cb){
       let parsed = await service.getParsedContent({id: content.id})
 
       console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
-      
+
       const cateId = parsed.opt1.split("=")[1];
 
       const gnu = GnuboardHelper.build()
@@ -118,7 +107,6 @@ gulp.task('contents:parse', async function(cb){
         subject: parsed.title,
         content: parsed.content,
         link1: parsed.url,
-        link2: parsed.url,
         datetime: parsed.lastmod,
       });
 
@@ -131,7 +119,9 @@ gulp.task('contents:parse', async function(cb){
   cb();
 });
 
-
+/*
+* contents group database -> gnuboard board
+*/
 gulp.task('new:category', async function  (cb){
   const {GnuboardHelper} = require('./batchjob/service/gnuboard');
   config.init();
@@ -167,108 +157,59 @@ gulp.task('new:category', async function  (cb){
 
 gulp.task('new:article', async function(cb){
 
+  logger.info('start !!! ');
+
   config.init();
 
-  dbm.init().then(async ()=>{
+  await dbm.init();
 
-    const {GnuboardHelper} = require('./batchjob/service/gnuboard');
+  const {GnuboardHelper} = require('./batchjob/service/gnuboard');
 
-    const service = require('./service/contentsCrawler')
+  const service = require('./service/contentsCrawler')
 
-    let result = await dbm.sequelize.query(' select * from contents where status = 1 limit 2 '
-      , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
+  let contentsList = await dbm.sequelize.query(' select id from contents where status = 1 '
+    , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
 
-    for(const row of result){
+  for(const content of contentsList){
+    try {
 
-      const cateId = row.opt1.split("=")[1];
+      console.log('contents :: ', content.id , ' start!')
 
-      if(!cateId || !isNaN(cateId)) continue;
+      let parsed = await service.getParsedContent({id: content.id})
 
-      try {
+      console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
 
-        console.log(' contents :: ', row.id)
+      const cateId = parsed.opt1.split("=")[1];
 
-        let parsed = await service.parseContent(row)
+      const gnu = GnuboardHelper.build()
 
-        const gnu = GnuboardHelper.build()
+      gnu.addArticle({
+        board: cateId,
+        subject: parsed.title,
+        content: parsed.content,
+        link1: parsed.url,
+        datetime: parsed.lastmod,
+      });
 
-        gnu.addArticle({
-          board: cateId,
-          subject: parsed.title,
-          content: parsed.content,
-          link1: parsed.url,
-          link2: parsed.url,
-          datetime: parsed.lastmod,
-        });
-
-        console.log('\t - contents :: ', row.id , ' done!')
-      }catch(err){
-        console.error(err);
-      }
-
+      console.log('\t - contents :: ', content.id , ' done!')
+    }catch(err){
+      console.error(err);
     }
-
-    cb();
-
-  });
-
-  console.log(`category run`);
-
-
-  // try {
-  //
-  //   console.log(` database connected :: ${database.initialized}`)
-  //
-  //   if(database.initialized){
-  //
-  //     let boardTemplate = require('./batchjob/templates/board.json')
-  //
-  //     let boardData = Object.assign({}, boardTemplate, {
-  //       bo_table: "test1"
-  //       , gr_id: "community"
-  //       , bo_subject: "test1"
-  //     })
-  //
-  //     let keys = Object.keys(boardData)
-  //     let values = Object.values(boardData)
-  //
-  //     let columns = keys.join(', ')
-  //     let columnValues = keys.map(_=>'?').join(', ')
-  //
-  //     let sql = ` insert into g5_board (${columns}) values (${columnValues}) `;
-  //
-  //     let result = await database.insert(sql, values)
-  //
-  //   }
-  //
-  // }catch(err){
-  //
-  //   console.error(err);
-  //
-  // }finally {
-  //   database.close();
-  //   cb();
-  // }
-
-
-});
-
-gulp.task('create_article', async function(cb){
-
-  let article = require('./templates/article.json')
-
-  // for(const [k,v] of Object.entries(article)){
-  //
-  // }
-
-  //
-  // let boardData = Object.assign(article, {
-  //   bo_table: 'free',
-  //   wr_subject: "",
-  //   wr_content: ""
-  // });
+  }
 
   cb();
+
 });
 
-exports.default = gulp.series(clean);
+
+gulp.task('job:daily', async function(cb){
+
+  logger.info(' running job:daily !!!!! ')
+
+  const job = require('./batchjob/daily.js');
+
+  await job.daily();
+
+});
+
+exports.default = gulp.series(['job:daily', 'contents:parse']);

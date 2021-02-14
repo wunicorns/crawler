@@ -30,7 +30,8 @@ async function getSitemap (siteUrl) {
 
 };
 
-async function updateContentDetail (args) {
+async function crawlContentDetail (args) {
+
   try {
 
     const html = await crawl.getText(args.url);
@@ -48,6 +49,21 @@ async function updateContentDetail (args) {
     for(var i = 0 ; i < params.length ; i++){
         value['opt' + (i + 1)] = params[i];
     }
+
+    return Object.assign({}, value, args);
+
+  }catch(err){
+    console.log('error :: crawlContentDetail');
+    throw err;
+  }
+};
+
+async function updateContentDetail (args) {
+  try {
+
+    let value = await crawlContentDetail({
+      url: args.url
+    });
 
     const rst = await dbm.Contents.update(value, {
       where: {id: args.id}
@@ -194,5 +210,6 @@ module.exports = {
   getPageLink,
 
   getParsedContent,
-  parseContent
+  parseContent,
+  crawlContentDetail
 }
