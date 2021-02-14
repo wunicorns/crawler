@@ -80,26 +80,12 @@ class Database {
     }
   }
 
-  async commit (){
-    const conn = await this.pool.getConnection();
-    try {
-      return await conn.query(sql);
-    } catch(err){
-      console.error(err);
-    } finally {
-      conn.release();
-    }
+  async commit (conn){
+    await conn.commit();
   }
 
-  async rollback (){
-    const conn = await this.pool.getConnection();
-    try {
-      return await conn.query(sql);
-    } catch(err){
-      console.error(err);
-    } finally {
-      conn.release();
-    }
+  async rollback (conn){
+    await conn.rollback();
   }
 
 

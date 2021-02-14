@@ -8,8 +8,8 @@
     <meta name="generator" content="Hugo 0.79.0">
     <title>:: Crawl Application ::</title>
 
-    <link href="/crawler/bootstrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="/crawler/jquery/jquery-ui.min.css" rel="stylesheet" />
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="jquery/jquery-ui.min.css" rel="stylesheet" />
 
     <!-- <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico"> -->
     <meta name="theme-color" content="#7952b3">
@@ -31,10 +31,14 @@
           font-size: 3.5rem;
         }
       }
+
+      .display-none {
+        display:none;
+      }
     </style>
 
     <!-- Custom styles for this template -->
-    <link href="/crawler/bootstrap/index.css" rel="stylesheet">
+    <link href="bootstrap/index.css" rel="stylesheet">
   </head>
   <body>
 
@@ -104,7 +108,7 @@
             </div>
           </div>
 
-          <h2>Articles</h2>
+          <h2>{{category}}</h2>
           <div class="table-responsive articles">
             <table class="table table-striped table-sm">
               <thead>
@@ -147,7 +151,7 @@
               </tbody>
             </table>
 
-            <nav aria-label="Page navigation example">
+            <nav class="bottom-nav display-none" aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                 <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
 
@@ -164,9 +168,9 @@
       </div>
     </div>
 
-    <script src="/crawler/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script src="/crawler/jquery/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script src="/crawler/jquery/jquery-ui.min.js" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="jquery/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="jquery/jquery-ui.min.js" crossorigin="anonymous"></script>
 
 <script>
 
@@ -175,15 +179,45 @@ function empty(){
 };
 
 (function($){
+
+  var totalCount = parseInt('{{total_count}}' || '0');
+
   $(document).ready(function(){
 
-    $("#status").change(function(){
-
-      if($(this).val()){
-        var path = location.origin + location.pathname + '?status=' + $(this).val();
-        location.href=path;
+    function pageMove (args) {
+      var params = location.search.slice(1).split("&");
+      var reqParams = [];
+      var reqParamMap = {};
+      for(var i = 0 ; i < params.length ; i++){
+        var param = params[i].split('=')
+        var key = param[0];
+        if(args[key]) continue;
+        reqParamMap[key] = param[1];
       }
 
+      for(var k in args) reqParamMap[k] = encodeURIComponent(args[k]);
+      for(var k in reqParamMap) reqParams.push(k + '=' + reqParamMap[k]);
+
+      location.href = location.origin + location.pathname + '?' + reqParams.join('&');
+    }
+
+    $("#status").change(function(){
+      if($(this).val()){
+        pageMove({
+          status: $(this).val() || '0',
+          offset: 0
+        })
+      }
+    });
+
+    $(".list-item-category").click(function(){
+      var opt1 = $(this).attr("item-data");
+      if(opt1){
+        pageMove({
+          category: opt1,
+          offset: 0
+        })
+      }
     });
 
     $("#txt_target_url").keyup(function(e){
@@ -191,7 +225,7 @@ function empty(){
 
         var targetUrl = $(this).val().trim();
 
-        fetch('/api/crawl', {
+        fetch('api/crawl', {
           method: 'post',
           cache: 'no-cache',
           credentials: 'same-origin',
@@ -206,17 +240,23 @@ function empty(){
         });
 
       }
-    }).val("https://www.mimint.co.kr/sitemap.xml");
-
-    $(".list-item-category").click(function(){
-
-      console.log($(this).attr("item-data"));
-
     });
+
 
     $(".btn_clicked").click(function(){
 
       var id = $(this).closest("tr").attr("id");
+
+      fetch('api/crawl/contents/' + id, {
+        method: 'get',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        }
+      }).then(function(resp){
+        console.log(resp);
+      });
 
       console.log(id);
 

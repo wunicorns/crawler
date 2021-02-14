@@ -32,40 +32,9 @@ let db = {
     const model = require('./model')(db.sequelize);
 
     db.Contents = model.Contents;
+    db.ContentsParsed = model.ContentsParsed;
 
   }
 }
 
 module.exports = db;
-
-//
-// const mariadb = require('mariadb');
-//
-// const pool = mariadb.createPool({
-//     host: '192.168.32.4',
-//     port: 3306,
-//     user: 'crawler',
-//     password: 'crawler1!',
-//     connectionLimit: 5
-// });
-//
-// async function Show(){
-//   console.log(1);
-//     let conn, rows;
-//     try{
-//         conn = await pool.getConnection();
-//         rows = await conn.query('show databases');
-//         console.log(rows);
-//     }
-//     catch(err){
-//         throw err;
-//     }
-//     finally{
-//         if (conn) conn.end();
-//         return rows[0];
-//     }
-// }
-//
-// module.exports = {
-//     Show: Show
-// }

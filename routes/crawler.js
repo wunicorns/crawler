@@ -26,9 +26,34 @@ router.get('/crawl/contents', async (req, res, next)=>{
 
   try {
 
-    service.getContents();
+    service.updateContents();
 
     res.json({});
+
+  }catch(err){
+    next(err);
+  }
+
+});
+
+router.get('/crawl/contents/:id', async (req, res, next)=>{
+
+  try {
+
+    console.log(req.params);
+
+    // service.updateContents();
+    let result = service.getParsedContent(req.params);
+
+    // {
+    //   subject: result.title,
+    //   content: result.content,
+    //   link1: result.url,
+    //   link2: result.url,
+    //   datetime: result.lastmod,
+    // }
+
+    res.json(result);
 
   }catch(err){
     next(err);

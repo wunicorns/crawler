@@ -1,54 +1,59 @@
-// const Sequelize = require('sequelize');
 module.exports = function(sequelize, Sequelize){
   const {Model, DataTypes} = Sequelize;
 
-  class Contents extends Model {}
-  Contents.init({
+  class ContentsParsed extends Model {}
+  ContentsParsed.init({
+    contentId: {
+        type: DataTypes.INTEGER,
+        field: 'content_id',
+        defaultValue: 0
+    },
     url: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    name: {
-        type: DataTypes.STRING,
-    },
     title: {
         type: DataTypes.STRING,
+        defaultValue: ""
     },
     opt1: {
         type: DataTypes.STRING,
+        defaultValue: ""
     },
     opt2: {
         type: DataTypes.STRING,
+        defaultValue: ""
     },
     opt3: {
         type: DataTypes.STRING,
+        defaultValue: ""
     },
     opt4: {
         type: DataTypes.STRING,
+        defaultValue: ""
     },
     opt5: {
         type: DataTypes.STRING,
+        defaultValue: ""
     },
     content: {
-        type: DataTypes.BLOB,
-    },
-    status: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
+        type: DataTypes.TEXT,
     },
     lastmod: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
     },
-    createDt: {
+    parsedAt: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
+      field: 'parsed_at'
     }
   }, {
     sequelize,
     timestamps: false,
-    modelName: 'contents',
-    tableName: 'contents'
+    modelName: 'contents_parsed',
+    tableName: 'contents_parsed'
   });
 
-  return Contents;
+  return ContentsParsed;
 }

@@ -4,9 +4,32 @@ const dbm = require('../database/mariadb')
 
 const router = express.Router();
 
+router.get('/login', async (req, res, next)=>{
+  try {
+
+    res.render('login', {});
+
+  }catch(error){
+    next(error);
+  }
+});
+
+router.post('/login', async (req, res, next)=>{
+  try {
+
+    res.join({});
+
+  }catch(error){
+    next(error);
+  }
+});
+
 router.get('/', async (req, res, next)=>{
 
   try {
+
+    let offset = 0;
+    let limit = 30;
 
     let categories = await dbm.Contents.findAll({
       attributes: ['opt1', [dbm.sequelize.fn('count', '*'), 'cnt']],
@@ -20,24 +43,32 @@ router.get('/', async (req, res, next)=>{
       whereCondition['status'] = req.query.status;
     }
 
+    if(req.query.category){
+      whereCondition['opt1'] = req.query.category;
+    }
+
     const op = dbm.sequelize;
 
-    let contents = await dbm.Contents.findAll({
+    let {rows, count} = await dbm.Contents.findAndCountAll({
       attributes: {
         include: [
           [op.fn('date_format', op.col('lastmod'), '%Y-%m-%d'), 'moddt'],
           [op.fn('date_format', op.col('createDt'), '%Y-%m-%d'), 'crawldt']
         ]
       },
-      limit: 50,
+      offset: offset,
+      limit: limit,
       where: whereCondition,
       raw: true,
       order: [['lastmod', 'desc']]
     });
 
-    // res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-
-    res.render('index', { categories: categories, contents: contents });
+    res.render('index', {
+      category: req.query.category || 'All',
+      categories: categories,
+      contents: rows,
+      total_count: count
+    });
 
   }catch(err){
     next(err);

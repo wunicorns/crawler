@@ -1,3 +1,6 @@
+const path = require('path');
+const fs = require('fs');
+const axios = require('axios');
 const cheerio = require("cheerio");
 const { Sequelize } = require('sequelize');
 
@@ -27,33 +30,42 @@ async function getSitemap (siteUrl) {
 
 };
 
-async function getContentDetail (link) {
+async function updateContentDetail (args) {
+  try {
 
-  const html = await crawl.getText(link.url);
+    const html = await crawl.getText(args.url);
 
-  let $ = cheerio.load(html);
+    let $ = cheerio.load(html);
 
-  let title = $("title").text().trim();
+    let title = $("title").text().trim();
 
-  logger.info(title);
+    logger.info(title);
 
-  let params = link.url.split('?')[1].split('&');
+    let params = args.url.split('?')[1].split('&');
 
-  let value = {title: title, content: html, status: 1};
+    let value = {title: title, content: html, status: 1};
 
-  for(var i = 0 ; i < params.length ; i++){
-      value['opt' + (i + 1)] = params[i];
+    for(var i = 0 ; i < params.length ; i++){
+        value['opt' + (i + 1)] = params[i];
+    }
+
+    const rst = await dbm.Contents.update(value, {
+      where: {id: args.id}
+    });
+
+    logger.info(args.id + " :: " + args.url + " :: " + rst);
+
+    return value;
+
+  }catch(err){
+    console.log('error :: updateContentDetail');
+    // console.log(args);
+    // console.error(err);
+    throw err;
   }
-
-  const rst = await dbm.Contents.update(value, {
-    where: {id: link.id}
-  });
-
-  logger.info(link.id + " :: " + link.url + " :: " + rst);
-
 };
 
-async function getContents () {
+async function updateContents () {
 
   let _list = await dbm.Contents.findAll({
     raw: true,
@@ -64,7 +76,7 @@ async function getContents () {
 
     try {
 
-      await getContentDetail(link);
+      await updateContentDetail(link);
 
     } catch(err){
       logger.info(link.id + " :: " + link.url);
@@ -72,6 +84,95 @@ async function getContents () {
     }
   }
 
+};
+
+
+async function parseContent (content) {
+  try {
+    const siteRoot = '/home/webcnt/web';
+
+    if(content.status === 0){
+      content = await updateContentDetail(content);
+    }
+
+    let $doc = cheerio.load(content.content)(".board_content");
+
+    let html = $doc.html();
+
+    let $imgs = $doc.find("img");
+
+    for(const $img of $imgs){
+      const src = $img.attribs['src'];
+      let imgPath = src;
+
+      if(!imgPath.startsWith('/')){
+        imgPath = imgPath.replace(/(http:\/\/|https:\/\/)/g, '');
+        imgPath = imgPath.substring(imgPath.indexOf('/'))
+      }
+
+      imgPath = '/data/file' + imgPath;
+
+      const siteImgPath = siteRoot + imgPath;
+
+      if(!fs.existsSync(siteImgPath)){
+        fs.mkdirSync(path.dirname(siteImgPath), { recursive: true })
+      } else {
+        fs.rmSync(siteImgPath);
+      }
+
+      let response = await axios.get(src, {responseType: 'stream'})
+      const writer = fs.createWriteStream(siteImgPath)
+      let result = await response.data.pipe(writer);
+
+      html = html.replace(src, imgPath)
+
+    }
+
+    let data = await dbm.Contents.findOne({
+      attributes: {exclude: [ 'content' ]},
+      raw: true,
+      where: { id: content.id }
+    });
+
+    let inserted = await dbm.ContentsParsed.create({
+      contentId: data.id
+      , url: data.url
+      , title: data.title
+      , opt1: data.opt1
+      , opt2: data.opt2
+      , opt3: data.opt3
+      , opt4: data.opt4
+      , opt5: data.opt5
+      , content: html
+      , lastmod: data.lastmod
+      , parsedAt: new Date()
+    });
+
+    return inserted;
+
+  }catch(err){
+    console.log('error :: parseContent');
+    // console.error(err);
+    throw err;
+  }
+};
+
+
+async function getParsedContent (args) {
+  try {
+
+    let content = await dbm.Contents.findOne({
+      raw: true,
+      where: { id: args.id }
+    });
+
+    return await parseContent(content);
+
+  }catch(err){
+    console.log('error :: getParsedContent');
+    // console.error(err);
+    throw err;
+  }
 };
 
 
@@ -88,7 +189,10 @@ async function getPageLink (siteUrl) {
 
 module.exports = {
   getSitemap,
-  getContentDetail,
-  getContents,
-  getPageLink
+  updateContentDetail,
+  updateContents,
+  getPageLink,
+
+  getParsedContent,
+  parseContent
 }
