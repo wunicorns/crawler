@@ -1,13 +1,11 @@
-const path = require('path')
 
 const batchConfig = global.globalRequire('batchjob/config');
-batchConfig.init();
+const {Database} = global.globalRequire('batchjob/database')
 
 class GnuboardHelper {
 
-  constructor(){
-    const {Database} = global.globalRequire('batchjob/database')
-    this.database = new Database();
+  constructor(){    
+    this.database = new Database(batchConfig);
   }
 
   static build() {

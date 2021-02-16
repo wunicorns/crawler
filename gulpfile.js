@@ -94,7 +94,7 @@ gulp.task('contents:parse', async function(cb){
 
       console.log('contents :: ', content.id , ' start!')
 
-      let parsed = await service.getParsedContent({id: content.id})
+      let [parsed, content] = await service.getParsedContent({id: content.id})
 
       console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
 
@@ -109,6 +109,9 @@ gulp.task('contents:parse', async function(cb){
         link1: parsed.url,
         datetime: parsed.lastmod,
       });
+
+      content.status = 1;
+      content.save();
 
       console.log('\t - contents :: ', content.id , ' done!')
     }catch(err){
@@ -175,7 +178,7 @@ gulp.task('new:article', async function(cb){
 
       console.log('contents :: ', content.id , ' start!')
 
-      let parsed = await service.getParsedContent({id: content.id})
+      let [parsed, content] = await service.getParsedContent({id: content.id})
 
       console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
 
@@ -190,6 +193,9 @@ gulp.task('new:article', async function(cb){
         link1: parsed.url,
         datetime: parsed.lastmod,
       });
+
+      content.status = 1;
+      content.save();
 
       console.log('\t - contents :: ', content.id , ' done!')
     }catch(err){

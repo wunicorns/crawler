@@ -138,9 +138,10 @@ gulp.task('addcategory', async function  (cb){
   dbm.init().then(async ()=>{
 
     const batchConfig = global.globalRequire('batchjob/config');
-    batchConfig.init();
+
     const {Database} = require('./batchjob/database')
-    let database = new Database();
+
+    let database = new Database(batchConfig);
 
     try {
 
@@ -259,9 +260,8 @@ gulp.task('addcategory', async function  (cb){
 gulp.task('create_board', async function(cb){
 
   const batchConfig = global.globalRequire('batchjob/config');
-  batchConfig.init();
   const {Database} = require('./batchjob/database')
-  let database = new Database();
+  let database = new Database(batchConfig);
 
   try {
 

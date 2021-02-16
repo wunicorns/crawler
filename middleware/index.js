@@ -2,7 +2,8 @@ function requestHandler(req, res, next){
 
     console.log('################################################');
     console.log(req.originalUrl);
-    console.log(req.query);
+    console.log('query :: ', req.query);
+    console.log('params :: ', req.params);
     console.log('################################################');
 
     next();

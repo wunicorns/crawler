@@ -6,6 +6,8 @@ const dbm = require('../database/mariadb')
 
 const service = require('../service/contentsCrawler')
 
+const {GnuboardHelper} = require('../batchjob/service/gnuboard');
+
 const router = express.Router();
 
 router.post('/crawl', async (req, res, next)=>{
@@ -43,17 +45,26 @@ router.get('/crawl/contents/:id', async (req, res, next)=>{
     console.log(req.params);
 
     // service.updateContents();
-    let result = service.getParsedContent(req.params);
+    let [parsed, content] = await service.getParsedContent(req.params);
 
-    // {
-    //   subject: result.title,
-    //   content: result.content,
-    //   link1: result.url,
-    //   link2: result.url,
-    //   datetime: result.lastmod,
-    // }
+    console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
 
-    res.json(result);
+    const cateId = parsed.opt1.split("=")[1];
+
+    const gnu = GnuboardHelper.build()
+
+    gnu.addArticle({
+      board: cateId,
+      subject: parsed.title,
+      content: parsed.content,
+      link1: parsed.url,
+      datetime: parsed.lastmod,
+    });
+
+    content.status = 1;
+    content.save();
+
+    res.json(parsed);
 
   }catch(err){
     next(err);

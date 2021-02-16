@@ -164,6 +164,7 @@ async function parseContent (content) {
       , parsedAt: new Date()
     });
 
+    // return inserted.get({plain: true});
     return inserted;
 
   }catch(err){
@@ -178,11 +179,10 @@ async function getParsedContent (args) {
   try {
 
     let content = await dbm.Contents.findOne({
-      raw: true,
       where: { id: args.id }
     });
 
-    return await parseContent(content);
+    return [await parseContent(content), content];
 
   }catch(err){
     console.log('error :: getParsedContent');

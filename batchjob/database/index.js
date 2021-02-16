@@ -3,14 +3,15 @@
 const mariadb  = require('mariadb');
 
 class Database {
-  constructor(){
+  constructor(config){
     this.initialized = false
+    this.config = config;
     this.init();
   }
 
   async init () {
 
-    const config = global.config
+    const config = this.config
 
     try {
 
