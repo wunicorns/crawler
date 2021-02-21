@@ -30,15 +30,168 @@ async function getSitemap (siteUrl) {
 
 };
 
+/*
+* new
+*/
+async function crawlContent (args) {
+
+  try {
+
+    const $ = await crawl.getDocument(args.url);
+
+    let title = $("title").text().trim();
+
+    let html = $(".board_content").html();
+
+    logger.info(title);
+
+    let params = args.url.split('?')[1].split('&');
+
+    let value = {title: title, content: html, status: 1};
+
+    for(var i = 0 ; i < params.length ; i++){
+        value['opt' + (i + 1)] = params[i];
+    }
+
+    return Object.assign({}, value, args);
+
+  }catch(err){
+    console.log('error :: crawlContentDetail');
+    throw err;
+  }
+};
+
+async function parseContent (content) {
+
+  try {
+
+    const siteRoot = '/home/webcnt/web';
+
+    let $doc = cheerio.load(content.content, null, false);
+
+    let html = $doc.html();
+
+    let $imgs = $doc("img");
+
+    for(const $img of $imgs){
+      const src = $img.attribs['src'];
+      let imgPath = src;
+
+      if(!imgPath.startsWith('/')){
+        imgPath = imgPath.replace(/(http:\/\/|https:\/\/)/g, '');
+        imgPath = imgPath.substring(imgPath.indexOf('/'))
+      }
+
+      imgPath = '/data/file' + imgPath;
+
+      const siteImgPath = siteRoot + imgPath;
+
+      if(!fs.existsSync(siteImgPath)){
+        fs.mkdirSync(path.dirname(siteImgPath), { recursive: true })
+      } else {
+        fs.rmSync(siteImgPath);
+      }
+
+      let response = await axios.get(src, {responseType: 'stream'})
+      const writer = fs.createWriteStream(siteImgPath)
+      let result = await response.data.pipe(writer);
+
+      html = html.replace(src, imgPath)
+
+    }
+
+    content.content = html;
+
+    return content;
+
+  }catch(err){
+    console.log('error :: parseContent');
+    // console.error(err);
+    throw err;
+  }
+};
+
+
+
+async function _parseContent (content) {
+  try {
+    const siteRoot = '/home/webcnt/web';
+
+    let $doc = cheerio.load(content.content);
+
+    let html = $doc.html();
+
+    let $imgs = $doc.find("img");
+
+    for(const $img of $imgs){
+      const src = $img.attribs['src'];
+      let imgPath = src;
+
+      if(!imgPath.startsWith('/')){
+        imgPath = imgPath.replace(/(http:\/\/|https:\/\/)/g, '');
+        imgPath = imgPath.substring(imgPath.indexOf('/'))
+      }
+
+      imgPath = '/data/file' + imgPath;
+
+      const siteImgPath = siteRoot + imgPath;
+
+      if(!fs.existsSync(siteImgPath)){
+        fs.mkdirSync(path.dirname(siteImgPath), { recursive: true })
+      } else {
+        fs.rmSync(siteImgPath);
+      }
+
+      let response = await axios.get(src, {responseType: 'stream'})
+      const writer = fs.createWriteStream(siteImgPath)
+      let result = await response.data.pipe(writer);
+
+      html = html.replace(src, imgPath)
+
+    }
+
+    let data = await dbm.Contents.findOne({
+      attributes: {exclude: [ 'content' ]},
+      raw: true,
+      where: { id: content.id }
+    });
+
+    let inserted = await dbm.ContentsParsed.create({
+      contentId: data.id
+      , url: data.url
+      , title: data.title
+      , opt1: data.opt1
+      , opt2: data.opt2
+      , opt3: data.opt3
+      , opt4: data.opt4
+      , opt5: data.opt5
+      , content: html
+      , lastmod: data.lastmod
+      , parsedAt: new Date()
+    });
+
+    // return inserted.get({plain: true});
+    return inserted;
+
+  }catch(err){
+    console.log('error :: parseContent');
+    // console.error(err);
+    throw err;
+  }
+};
+
+
+
+
 async function crawlContentDetail (args) {
 
   try {
 
-    const html = await crawl.getText(args.url);
-
-    let $ = cheerio.load(html);
+    const $ = await crawl.getDocument(args.url);
 
     let title = $("title").text().trim();
+
+    let html = $(".board_content").html();
 
     logger.info(title);
 
@@ -103,76 +256,7 @@ async function updateContents () {
 };
 
 
-async function parseContent (content) {
-  try {
-    const siteRoot = '/home/webcnt/web';
 
-    if(content.status === 0){
-      content = await updateContentDetail(content);
-    }
-
-    let $doc = cheerio.load(content.content)(".board_content");
-
-    let html = $doc.html();
-
-    let $imgs = $doc.find("img");
-
-    for(const $img of $imgs){
-      const src = $img.attribs['src'];
-      let imgPath = src;
-
-      if(!imgPath.startsWith('/')){
-        imgPath = imgPath.replace(/(http:\/\/|https:\/\/)/g, '');
-        imgPath = imgPath.substring(imgPath.indexOf('/'))
-      }
-
-      imgPath = '/data/file' + imgPath;
-
-      const siteImgPath = siteRoot + imgPath;
-
-      if(!fs.existsSync(siteImgPath)){
-        fs.mkdirSync(path.dirname(siteImgPath), { recursive: true })
-      } else {
-        fs.rmSync(siteImgPath);
-      }
-
-      let response = await axios.get(src, {responseType: 'stream'})
-      const writer = fs.createWriteStream(siteImgPath)
-      let result = await response.data.pipe(writer);
-
-      html = html.replace(src, imgPath)
-
-    }
-
-    let data = await dbm.Contents.findOne({
-      attributes: {exclude: [ 'content' ]},
-      raw: true,
-      where: { id: content.id }
-    });
-
-    let inserted = await dbm.ContentsParsed.create({
-      contentId: data.id
-      , url: data.url
-      , title: data.title
-      , opt1: data.opt1
-      , opt2: data.opt2
-      , opt3: data.opt3
-      , opt4: data.opt4
-      , opt5: data.opt5
-      , content: html
-      , lastmod: data.lastmod
-      , parsedAt: new Date()
-    });
-
-    // return inserted.get({plain: true});
-    return inserted;
-
-  }catch(err){
-    console.log('error :: parseContent');
-    // console.error(err);
-    throw err;
-  }
-};
 
 
 async function getParsedContent (args) {
@@ -211,5 +295,6 @@ module.exports = {
 
   getParsedContent,
   parseContent,
-  crawlContentDetail
+  crawlContentDetail,
+  crawlContent
 }

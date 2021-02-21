@@ -1,0 +1,2070 @@
+[02:05:31] Using gulpfile /home/crawler/crawler/gulpfile.js
+[02:05:31] Starting 'job:daily'...
+[32minfo[39m:  running job:daily !!!!!  {"timestamp":"2021-02-22 02:05:31"}
+daily job start
+(node:27295) [SEQUELIZE0006] DeprecationWarning: This database engine version is not supported, please update your database server. More information https://github.com/sequelize/sequelize/blob/main/ENGINE.md
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Executing (default): SELECT 1+1 AS result
+Connection has been established successfully.
+[32minfo[39m:  crawl :: /talk/ {"timestamp":"2021-02-22 02:05:31"}
+Executing (default): CREATE TABLE IF NOT EXISTS `articles` (`id` INTEGER NOT NULL auto_increment , `url` VARCHAR(255) NOT NULL, `name` VARCHAR(255), `title` VARCHAR(255), `opt1` VARCHAR(255), `opt2` VARCHAR(255), `opt3` VARCHAR(255), `opt4` VARCHAR(255), `opt5` VARCHAR(255), `opt6` VARCHAR(255), `opt7` VARCHAR(255), `opt8` VARCHAR(255), `opt9` VARCHAR(255), `opt10` VARCHAR(255), `content` TEXT, `status` INTEGER DEFAULT 0, `lastmod` DATETIME, `createDt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `articles`
+Executing (default): CREATE TABLE IF NOT EXISTS `contents` (`id` INTEGER NOT NULL auto_increment , `url` VARCHAR(255) NOT NULL, `name` VARCHAR(255), `title` VARCHAR(255), `opt1` VARCHAR(255), `opt2` VARCHAR(255), `opt3` VARCHAR(255), `opt4` VARCHAR(255), `opt5` VARCHAR(255), `content` BLOB, `status` INTEGER DEFAULT 0, `lastmod` DATETIME, `createDt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `contents`
+Executing (default): CREATE TABLE IF NOT EXISTS `contents_parsed` (`id` INTEGER NOT NULL auto_increment , `content_id` INTEGER DEFAULT 0, `url` VARCHAR(255) NOT NULL, `title` VARCHAR(255) DEFAULT '', `opt1` VARCHAR(255) DEFAULT '', `opt2` VARCHAR(255) DEFAULT '', `opt3` VARCHAR(255) DEFAULT '', `opt4` VARCHAR(255) DEFAULT '', `opt5` VARCHAR(255) DEFAULT '', `content` TEXT, `lastmod` DATETIME, `parsed_at` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `contents_parsed`
+[32minfo[39m:  crawl :: /food_n/ {"timestamp":"2021-02-22 02:05:42"}
+[32minfo[39m:  crawl :: /baby_n/ {"timestamp":"2021-02-22 02:05:48"}
+[32minfo[39m:  crawl :: /love_n/ {"timestamp":"2021-02-22 02:05:53"}
+[32minfo[39m:  crawl :: /life/ {"timestamp":"2021-02-22 02:06:00"}
+/bbs/list.asp?strBoardID=story&bbstype=chatter
+[32minfo[39m: 수경재배 도와두세요 {"timestamp":"2021-02-22 02:06:18"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  1
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2558, warningStatus: 0 }
+[32minfo[39m: 전세만기 전에 집 뺄때 주의할점? {"timestamp":"2021-02-22 02:06:24"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  2
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2559, warningStatus: 0 }
+[32minfo[39m: 명절대비 컴퓨터 셋팅 완료 {"timestamp":"2021-02-22 02:06:29"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  3
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2560, warningStatus: 0 }
+[32minfo[39m: 덜튀면서 예쁜이름? {"timestamp":"2021-02-22 02:06:33"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  4
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2561, warningStatus: 0 }
+[32minfo[39m: 수도요금 누진세 {"timestamp":"2021-02-22 02:06:39"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  5
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2562, warningStatus: 0 }
+[32minfo[39m: 미국에서 다이어트 식품으로 팔린다는 뻥튀기 {"timestamp":"2021-02-22 02:06:46"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  6
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2563, warningStatus: 0 }
+[32minfo[39m: 보일러 예약이 원래 추운가요? {"timestamp":"2021-02-22 02:06:53"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  7
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2564, warningStatus: 0 }
+[32minfo[39m: 배우 지창욱 너무 좋아요 {"timestamp":"2021-02-22 02:06:59"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  8
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2565, warningStatus: 0 }
+[32minfo[39m: 지역케이블 인터넷 괜찮나요? {"timestamp":"2021-02-22 02:07:07"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  9
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2566, warningStatus: 0 }
+[32minfo[39m: 사회초년생 돈 어케 모아요? {"timestamp":"2021-02-22 02:07:11"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  10
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2567, warningStatus: 0 }
+[32minfo[39m: 청바지 언제 버리세요? {"timestamp":"2021-02-22 02:07:15"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  11
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2568, warningStatus: 0 }
+[32minfo[39m: 20살 여자 선물! {"timestamp":"2021-02-22 02:07:19"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  12
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2569, warningStatus: 0 }
+[32minfo[39m: 대학입학 선물은 뭘로? {"timestamp":"2021-02-22 02:07:23"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  13
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2570, warningStatus: 0 }
+[32minfo[39m: 세뱃돈 {"timestamp":"2021-02-22 02:07:27"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  14
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2571, warningStatus: 0 }
+[32minfo[39m: 학교폭력 당한 아들 가해자를 팬 아버지 {"timestamp":"2021-02-22 02:07:33"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  15
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2572, warningStatus: 0 }
+[32minfo[39m: 쉬는날이 너무빨리지나가네요ㅠㅠㅠ {"timestamp":"2021-02-22 02:07:36"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  16
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2573, warningStatus: 0 }
+[32minfo[39m: 밝은세상안과에서 스마일 라식 {"timestamp":"2021-02-22 02:07:41"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  17
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2574, warningStatus: 0 }
+[32minfo[39m: 따뜻한 날이 오면 좀 나을까요 {"timestamp":"2021-02-22 02:07:45"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  18
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2575, warningStatus: 0 }
+[32minfo[39m: 이제 졸업하는데,,, 졸업하기 싫어요 ㅠㅠ {"timestamp":"2021-02-22 02:07:51"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  19
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2576, warningStatus: 0 }
+[32minfo[39m: 꿈을 몇개나 꾼건지 {"timestamp":"2021-02-22 02:07:58"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  20
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2577, warningStatus: 0 }
+[32minfo[39m: 대학졸업식날 뭐하면 되나요,, {"timestamp":"2021-02-22 02:08:03"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  21
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2578, warningStatus: 0 }
+[32minfo[39m: 부모님 효도는 정말 돈이 정답일까? {"timestamp":"2021-02-22 02:08:10"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  22
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2579, warningStatus: 0 }
+[32minfo[39m: 다들 대면인가요 비대면인가여 {"timestamp":"2021-02-22 02:08:14"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  23
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2580, warningStatus: 0 }
+[32minfo[39m: 동생 선물 뭐가 나을까요 {"timestamp":"2021-02-22 02:08:23"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  24
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2581, warningStatus: 0 }
+[32minfo[39m: 막장드라마 이제 못보겠음 {"timestamp":"2021-02-22 02:08:28"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  25
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2582, warningStatus: 0 }
+/bbs/list.asp?strBoardID=tvnews&bbstype=tvstar
+[32minfo[39m: 연예인 싸움 서열 1위 {"timestamp":"2021-02-22 02:08:40"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  26
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 600, warningStatus: 0 }
+[32minfo[39m: 국민 MC 유재석의 10가지 소통의 법칙 여섯번째.... {"timestamp":"2021-02-22 02:08:44"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  27
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 601, warningStatus: 0 }
+[32minfo[39m: 청룡 영화제 리허설때 김혜수 포스 {"timestamp":"2021-02-22 02:08:48"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  28
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 602, warningStatus: 0 }
+[32minfo[39m: 신승태, ‘트롯 전국체전’ 결승 무대가 기대되는 이유 ‘셋’ {"timestamp":"2021-02-22 02:09:01"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+error :: parseContent
+Error: getaddrinfo ENOTFOUND https
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:67:26)
+    at GetAddrInfoReqWrap.callbackTrampoline (internal/async_hooks.js:131:14) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'https',
+  config: {
+    url: 'blob:https://m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7',
+    method: 'get',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'User-Agent': 'axios/0.21.1'
+    },
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    adapter: [Function: httpAdapter],
+    responseType: 'stream',
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    validateStatus: [Function: validateStatus],
+    data: undefined
+  },
+  request: <ref *1> Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      afterWriteTickInfo: null,
+      buffered: [],
+      bufferedIndex: 0,
+      allBuffers: true,
+      allNoop: true,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: true,
+      errored: null,
+      closed: false
+    },
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      protocol: 'http:',
+      path: '//m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7',
+      method: 'GET',
+      headers: [Object],
+      agent: undefined,
+      agents: [Object],
+      auth: undefined,
+      hostname: 'https',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '//m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7'
+    },
+    _ended: true,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 0,
+    _requestBodyBuffers: [],
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [Socket],
+      _header: 'GET //m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7 HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: axios/0.21.1\r\n' +
+        'Host: https\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      path: '//m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'https',
+      protocol: 'http:',
+      _redirectable: [Circular *1],
+      [Symbol(kCapture)]: false,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'http://https//m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7',
+    [Symbol(kCapture)]: false
+  },
+  response: undefined,
+  isAxiosError: true,
+  toJSON: [Function: toJSON]
+}
+[31merror[39m: undefined {"config":{"url":"blob:https://m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7","method":"get","headers":{"Accept":"application/json, text/plain, */*","User-Agent":"axios/0.21.1"},"transformRequest":[null],"transformResponse":[null],"timeout":0,"responseType":"stream","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN","maxContentLength":-1,"maxBodyLength":-1},"code":"ENOTFOUND"}
+[32minfo[39m: 이렇게 생겨서 빠나나 장수가 되어버린 남돌 {"timestamp":"2021-02-22 02:09:04"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+error :: parseContent
+Error: Request failed with status code 400
+    at createError (/home/crawler/crawler/node_modules/axios/lib/core/createError.js:16:15)
+    at settle (/home/crawler/crawler/node_modules/axios/lib/core/settle.js:17:12)
+    at RedirectableRequest.handleResponse (/home/crawler/crawler/node_modules/axios/lib/adapters/http.js:231:9)
+    at RedirectableRequest.emit (events.js:315:20)
+    at RedirectableRequest.EventEmitter.emit (domain.js:529:15)
+    at RedirectableRequest._processResponse (/home/crawler/crawler/node_modules/follow-redirects/index.js:380:10)
+    at ClientRequest.RedirectableRequest._onNativeResponse (/home/crawler/crawler/node_modules/follow-redirects/index.js:56:10)
+    at Object.onceWrapper (events.js:422:26)
+    at ClientRequest.emit (events.js:315:20)
+    at ClientRequest.EventEmitter.emit (domain.js:529:15) {
+  config: {
+    url: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+    method: 'get',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'User-Agent': 'axios/0.21.1'
+    },
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    adapter: [Function: httpAdapter],
+    responseType: 'stream',
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    validateStatus: [Function: validateStatus],
+    data: undefined
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      socket: [Function (anonymous)],
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      prefinish: [Function: requestOnPrefinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: false,
+    _last: true,
+    chunkedEncoding: false,
+    shouldKeepAlive: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: false,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    _contentLength: 0,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: '1.bp.blogspot.com',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 11,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: '1.bp.blogspot.com',
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: [HTTPParser],
+      _httpMessage: [Circular *1],
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: 15537,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object],
+      [Symbol(RequestTimeout)]: undefined
+    },
+    _header: 'GET /-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'User-Agent: axios/0.21.1\r\n' +
+      'Host: 1.bp.blogspot.com\r\n' +
+      'Connection: close\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: noopPendingOutput],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      defaultPort: 443,
+      protocol: 'https:',
+      options: [Object],
+      requests: {},
+      sockets: [Object],
+      freeSockets: {},
+      keepAliveMsecs: 1000,
+      keepAlive: false,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'fifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 1,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      [Symbol(kCapture)]: false
+    },
+    socketPath: undefined,
+    method: 'GET',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    path: '/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+    _ended: false,
+    res: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      socket: [TLSSocket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: false,
+      headers: [Object],
+      rawHeaders: [Array],
+      trailers: {},
+      rawTrailers: [],
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      client: [TLSSocket],
+      _consuming: false,
+      _dumped: false,
+      req: [Circular *1],
+      responseUrl: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      redirects: [],
+      [Symbol(kCapture)]: false,
+      [Symbol(RequestTimeout)]: undefined
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: HTTPParser {
+      '1': [Function: parserOnHeaders],
+      '2': [Function: parserOnHeadersComplete],
+      '3': [Function: parserOnBody],
+      '4': [Function: parserOnMessageComplete],
+      '5': null,
+      '6': null,
+      _headers: [],
+      _url: '',
+      socket: [TLSSocket],
+      incoming: [IncomingMessage],
+      outgoing: [Circular *1],
+      maxHeaderPairs: 2000,
+      _consumed: false,
+      onIncoming: [Function: parserOnIncomingClient],
+      [Symbol(resource_symbol)]: [HTTPClientAsyncResource]
+    },
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: '1.bp.blogspot.com',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _writableState: [WritableState],
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 0,
+      _requestBodyBuffers: [],
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(kCapture)]: false,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      'user-agent': [Array],
+      host: [Array]
+    }
+  },
+  response: {
+    status: 400,
+    statusText: 'Bad Request',
+    headers: {
+      vary: 'Origin',
+      'access-control-allow-origin': '*',
+      'timing-allow-origin': '*',
+      'content-type': 'text/html; charset=UTF-8',
+      'x-content-type-options': 'nosniff',
+      date: 'Sun, 21 Feb 2021 17:09:05 GMT',
+      server: 'fife',
+      'content-length': '1555',
+      'x-xss-protection': '0',
+      'alt-svc': 'h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"',
+      connection: 'close'
+    },
+    config: {
+      url: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      method: 'get',
+      headers: [Object],
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      adapter: [Function: httpAdapter],
+      responseType: 'stream',
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      validateStatus: [Function: validateStatus],
+      data: undefined
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      _header: 'GET /-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: axios/0.21.1\r\n' +
+        'Host: 1.bp.blogspot.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      path: '/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      _ended: false,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: [HTTPParser],
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: '1.bp.blogspot.com',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(kCapture)]: false,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    data: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      socket: [TLSSocket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: false,
+      headers: [Object],
+      rawHeaders: [Array],
+      trailers: {},
+      rawTrailers: [],
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      client: [TLSSocket],
+      _consuming: false,
+      _dumped: false,
+      req: [ClientRequest],
+      responseUrl: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      redirects: [],
+      [Symbol(kCapture)]: false,
+      [Symbol(RequestTimeout)]: undefined
+    }
+  },
+  isAxiosError: true,
+  toJSON: [Function: toJSON]
+}
+[31merror[39m: undefined {"config":{"url":"https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg","method":"get","headers":{"Accept":"application/json, text/plain, */*","User-Agent":"axios/0.21.1"},"transformRequest":[null],"transformResponse":[null],"timeout":0,"responseType":"stream","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN","maxContentLength":-1,"maxBodyLength":-1}}
+[32minfo[39m: 중독성 쩌는 걸그룹 위클리 틱톡 {"timestamp":"2021-02-22 02:09:14"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  31
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 603, warningStatus: 0 }
+[32minfo[39m: 사장님귀는 당나귀귀 걸뱅이분식 계속하는거에요?? {"timestamp":"2021-02-22 02:09:20"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  32
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 604, warningStatus: 0 }
+[32minfo[39m: 아이유는 진짜 미담이 많은거 같아요 {"timestamp":"2021-02-22 02:09:24"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+DatabaseError [SequelizeDatabaseError]: (conn=88350, no: 1146, SQLState: 42S02) Table 'crawling.articles' doesn't exist
+sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+    at Query.formatError (/home/crawler/crawler/node_modules/sequelize/lib/dialects/mariadb/query.js:291:16)
+    at Query.run (/home/crawler/crawler/node_modules/sequelize/lib/dialects/mariadb/query.js:82:18)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async /home/crawler/crawler/node_modules/sequelize/lib/sequelize.js:619:16
+    at async MySQLQueryInterface.insert (/home/crawler/crawler/node_modules/sequelize/lib/dialects/abstract/query-interface.js:748:21)
+    at async Articles.save (/home/crawler/crawler/node_modules/sequelize/lib/model.js:3954:35)
+    at async Function.create (/home/crawler/crawler/node_modules/sequelize/lib/model.js:2207:12)
+    at async Object.module.exports.daily (/home/crawler/crawler/batchjob/daily.js:60:24)
+    at async /home/crawler/crawler/gulpfile.js:217:3 {
+  parent: SqlError: (conn=88350, no: 1146, SQLState: 42S02) Table 'crawling.articles' doesn't exist
+  sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+      at Object.module.exports.createError (/home/crawler/crawler/node_modules/mariadb/lib/misc/errors.js:55:10)
+      at PacketNodeEncoded.readError (/home/crawler/crawler/node_modules/mariadb/lib/io/packet.js:505:19)
+      at Query.readResponsePacket (/home/crawler/crawler/node_modules/mariadb/lib/cmd/resultset.js:46:28)
+      at PacketInputStream.receivePacketBasic (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:104:9)
+      at PacketInputStream.onData (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:169:20)
+      at Socket.emit (events.js:315:20)
+      at Socket.EventEmitter.emit (domain.js:529:15)
+      at addChunk (internal/streams/readable.js:309:12)
+      at readableAddChunk (internal/streams/readable.js:284:9)
+      at Socket.Readable.push (internal/streams/readable.js:223:10) {
+    fatal: false,
+    errno: 1146,
+    sqlState: '42S02',
+    code: 'ER_NO_SUCH_TABLE',
+    sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+    parameters: [
+      'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181752&page=1&pageblock=1',
+      '아이유는 진짜 미담이 많은거 같아요',
+      'strBoardID=tvnews',
+      'bbstype=tvstar',
+      'sdate=0',
+      'skind=',
+      'sword=',
+      'bidx=181752',
+      'page=1',
+      'pageblock=1',
+      '\n' +
+        '\t\t\t<p>효리네 민박에 나왔던 손님중 한명이던</p>\n' +
+        '<p>정담이양 저도 기억나네요</p>\n' +
+        '<p>청각장애가 있지만 되게 밝아서 좋아보였는데</p>\n' +
+        '<p>아이유가 먼저 연락하고 쇼핑몰에서 몰래 물건도</p>\n' +
+        '<p>주문해줬다고 하더라구요ㅠ 하...진짜 아이유는</p>\n' +
+        '<p>미담이 끝도 없네요ㅠ 나이도 어린데 어쩜 그렇게</p>\n' +
+        '<p>사람 잘 챙기고 배려심이 많은지 ㅠ</p>\n' +
+        '\n' +
+        '\t\t\t\t',
+      1,
+      '2021-02-19 15:00:00.000',
+      '2021-02-21 17:09:24.130'
+    ]
+  },
+  original: SqlError: (conn=88350, no: 1146, SQLState: 42S02) Table 'crawling.articles' doesn't exist
+  sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+      at Object.module.exports.createError (/home/crawler/crawler/node_modules/mariadb/lib/misc/errors.js:55:10)
+      at PacketNodeEncoded.readError (/home/crawler/crawler/node_modules/mariadb/lib/io/packet.js:505:19)
+      at Query.readResponsePacket (/home/crawler/crawler/node_modules/mariadb/lib/cmd/resultset.js:46:28)
+      at PacketInputStream.receivePacketBasic (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:104:9)
+      at PacketInputStream.onData (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:169:20)
+      at Socket.emit (events.js:315:20)
+      at Socket.EventEmitter.emit (domain.js:529:15)
+      at addChunk (internal/streams/readable.js:309:12)
+      at readableAddChunk (internal/streams/readable.js:284:9)
+      at Socket.Readable.push (internal/streams/readable.js:223:10) {
+    fatal: false,
+    errno: 1146,
+    sqlState: '42S02',
+    code: 'ER_NO_SUCH_TABLE',
+    sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+    parameters: [
+      'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181752&page=1&pageblock=1',
+      '아이유는 진짜 미담이 많은거 같아요',
+      'strBoardID=tvnews',
+      'bbstype=tvstar',
+      'sdate=0',
+      'skind=',
+      'sword=',
+      'bidx=181752',
+      'page=1',
+      'pageblock=1',
+      '\n' +
+        '\t\t\t<p>효리네 민박에 나왔던 손님중 한명이던</p>\n' +
+        '<p>정담이양 저도 기억나네요</p>\n' +
+        '<p>청각장애가 있지만 되게 밝아서 좋아보였는데</p>\n' +
+        '<p>아이유가 먼저 연락하고 쇼핑몰에서 몰래 물건도</p>\n' +
+        '<p>주문해줬다고 하더라구요ㅠ 하...진짜 아이유는</p>\n' +
+        '<p>미담이 끝도 없네요ㅠ 나이도 어린데 어쩜 그렇게</p>\n' +
+        '<p>사람 잘 챙기고 배려심이 많은지 ㅠ</p>\n' +
+        '\n' +
+        '\t\t\t\t',
+      1,
+      '2021-02-19 15:00:00.000',
+      '2021-02-21 17:09:24.130'
+    ]
+  },
+  sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+  parameters: [
+    'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181752&page=1&pageblock=1',
+    '아이유는 진짜 미담이 많은거 같아요',
+    'strBoardID=tvnews',
+    'bbstype=tvstar',
+    'sdate=0',
+    'skind=',
+    'sword=',
+    'bidx=181752',
+    'page=1',
+    'pageblock=1',
+    '\n' +
+      '\t\t\t<p>효리네 민박에 나왔던 손님중 한명이던</p>\n' +
+      '<p>정담이양 저도 기억나네요</p>\n' +
+      '<p>청각장애가 있지만 되게 밝아서 좋아보였는데</p>\n' +
+      '<p>아이유가 먼저 연락하고 쇼핑몰에서 몰래 물건도</p>\n' +
+      '<p>주문해줬다고 하더라구요ㅠ 하...진짜 아이유는</p>\n' +
+      '<p>미담이 끝도 없네요ㅠ 나이도 어린데 어쩜 그렇게</p>\n' +
+      '<p>사람 잘 챙기고 배려심이 많은지 ㅠ</p>\n' +
+      '\n' +
+      '\t\t\t\t',
+    1,
+    '2021-02-19 15:00:00.000',
+    '2021-02-21 17:09:24.130'
+  ]
+}
+[31merror[39m: undefined {"name":"SequelizeDatabaseError","parent":{"fatal":false,"errno":1146,"sqlState":"42S02","code":"ER_NO_SUCH_TABLE","sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181752&page=1&pageblock=1","아이유는 진짜 미담이 많은거 같아요","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181752","page=1","pageblock=1","\n\t\t\t<p>효리네 민박에 나왔던 손님중 한명이던</p>\n<p>정담이양 저도 기억나네요</p>\n<p>청각장애가 있지만 되게 밝아서 좋아보였는데</p>\n<p>아이유가 먼저 연락하고 쇼핑몰에서 몰래 물건도</p>\n<p>주문해줬다고 하더라구요ㅠ 하...진짜 아이유는</p>\n<p>미담이 끝도 없네요ㅠ 나이도 어린데 어쩜 그렇게</p>\n<p>사람 잘 챙기고 배려심이 많은지 ㅠ</p>\n\n\t\t\t\t",1,"2021-02-19 15:00:00.000","2021-02-21 17:09:24.130"]},"original":{"fatal":false,"errno":1146,"sqlState":"42S02","code":"ER_NO_SUCH_TABLE","sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181752&page=1&pageblock=1","아이유는 진짜 미담이 많은거 같아요","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181752","page=1","pageblock=1","\n\t\t\t<p>효리네 민박에 나왔던 손님중 한명이던</p>\n<p>정담이양 저도 기억나네요</p>\n<p>청각장애가 있지만 되게 밝아서 좋아보였는데</p>\n<p>아이유가 먼저 연락하고 쇼핑몰에서 몰래 물건도</p>\n<p>주문해줬다고 하더라구요ㅠ 하...진짜 아이유는</p>\n<p>미담이 끝도 없네요ㅠ 나이도 어린데 어쩜 그렇게</p>\n<p>사람 잘 챙기고 배려심이 많은지 ㅠ</p>\n\n\t\t\t\t",1,"2021-02-19 15:00:00.000","2021-02-21 17:09:24.130"]},"sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181752&page=1&pageblock=1","아이유는 진짜 미담이 많은거 같아요","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181752","page=1","pageblock=1","\n\t\t\t<p>효리네 민박에 나왔던 손님중 한명이던</p>\n<p>정담이양 저도 기억나네요</p>\n<p>청각장애가 있지만 되게 밝아서 좋아보였는데</p>\n<p>아이유가 먼저 연락하고 쇼핑몰에서 몰래 물건도</p>\n<p>주문해줬다고 하더라구요ㅠ 하...진짜 아이유는</p>\n<p>미담이 끝도 없네요ㅠ 나이도 어린데 어쩜 그렇게</p>\n<p>사람 잘 챙기고 배려심이 많은지 ㅠ</p>\n\n\t\t\t\t",1,"2021-02-19 15:00:00.000","2021-02-21 17:09:24.130"],"timestamp":"2021-02-22 02:09:24"}
+[32minfo[39m: 국민 MC 유재석의 10가지 소통의 법칙 다섯번째.... {"timestamp":"2021-02-22 02:09:26"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+DatabaseError [SequelizeDatabaseError]: (conn=88350, no: 1146, SQLState: 42S02) Table 'crawling.articles' doesn't exist
+sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+    at Query.formatError (/home/crawler/crawler/node_modules/sequelize/lib/dialects/mariadb/query.js:291:16)
+    at Query.run (/home/crawler/crawler/node_modules/sequelize/lib/dialects/mariadb/query.js:82:18)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async /home/crawler/crawler/node_modules/sequelize/lib/sequelize.js:619:16
+    at async MySQLQueryInterface.insert (/home/crawler/crawler/node_modules/sequelize/lib/dialects/abstract/query-interface.js:748:21)
+    at async Articles.save (/home/crawler/crawler/node_modules/sequelize/lib/model.js:3954:35)
+    at async Function.create (/home/crawler/crawler/node_modules/sequelize/lib/model.js:2207:12)
+    at async Object.module.exports.daily (/home/crawler/crawler/batchjob/daily.js:60:24)
+    at async /home/crawler/crawler/gulpfile.js:217:3 {
+  parent: SqlError: (conn=88350, no: 1146, SQLState: 42S02) Table 'crawling.articles' doesn't exist
+  sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+      at Object.module.exports.createError (/home/crawler/crawler/node_modules/mariadb/lib/misc/errors.js:55:10)
+      at PacketNodeEncoded.readError (/home/crawler/crawler/node_modules/mariadb/lib/io/packet.js:505:19)
+      at Query.readResponsePacket (/home/crawler/crawler/node_modules/mariadb/lib/cmd/resultset.js:46:28)
+      at PacketInputStream.receivePacketBasic (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:104:9)
+      at PacketInputStream.onData (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:169:20)
+      at Socket.emit (events.js:315:20)
+      at Socket.EventEmitter.emit (domain.js:529:15)
+      at addChunk (internal/streams/readable.js:309:12)
+      at readableAddChunk (internal/streams/readable.js:284:9)
+      at Socket.Readable.push (internal/streams/readable.js:223:10) {
+    fatal: false,
+    errno: 1146,
+    sqlState: '42S02',
+    code: 'ER_NO_SUCH_TABLE',
+    sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+    parameters: [
+      'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181751&page=1&pageblock=1',
+      '국민 MC 유재석의 10가지 소통의 법칙 다섯번째....',
+      'strBoardID=tvnews',
+      'bbstype=tvstar',
+      'sdate=0',
+      'skind=',
+      'sword=',
+      'bidx=181751',
+      'page=1',
+      'pageblock=1',
+      '\n' +
+        '\t\t\t<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        `   <span style="font-size: 22px;">내가 '하고' 싶어 하는 말보다 상대방이 '듣고' 싶은 말을 해라.</span>\n` +
+        '</p>\n' +
+        '\n' +
+        '\t\t\t\t',
+      1,
+      '2021-02-19 15:00:00.000',
+      '2021-02-21 17:09:26.738'
+    ]
+  },
+  original: SqlError: (conn=88350, no: 1146, SQLState: 42S02) Table 'crawling.articles' doesn't exist
+  sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+      at Object.module.exports.createError (/home/crawler/crawler/node_modules/mariadb/lib/misc/errors.js:55:10)
+      at PacketNodeEncoded.readError (/home/crawler/crawler/node_modules/mariadb/lib/io/packet.js:505:19)
+      at Query.readResponsePacket (/home/crawler/crawler/node_modules/mariadb/lib/cmd/resultset.js:46:28)
+      at PacketInputStream.receivePacketBasic (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:104:9)
+      at PacketInputStream.onData (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:169:20)
+      at Socket.emit (events.js:315:20)
+      at Socket.EventEmitter.emit (domain.js:529:15)
+      at addChunk (internal/streams/readable.js:309:12)
+      at readableAddChunk (internal/streams/readable.js:284:9)
+      at Socket.Readable.push (internal/streams/readable.js:223:10) {
+    fatal: false,
+    errno: 1146,
+    sqlState: '42S02',
+    code: 'ER_NO_SUCH_TABLE',
+    sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+    parameters: [
+      'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181751&page=1&pageblock=1',
+      '국민 MC 유재석의 10가지 소통의 법칙 다섯번째....',
+      'strBoardID=tvnews',
+      'bbstype=tvstar',
+      'sdate=0',
+      'skind=',
+      'sword=',
+      'bidx=181751',
+      'page=1',
+      'pageblock=1',
+      '\n' +
+        '\t\t\t<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        `   <span style="font-size: 22px;">내가 '하고' 싶어 하는 말보다 상대방이 '듣고' 싶은 말을 해라.</span>\n` +
+        '</p>\n' +
+        '\n' +
+        '\t\t\t\t',
+      1,
+      '2021-02-19 15:00:00.000',
+      '2021-02-21 17:09:26.738'
+    ]
+  },
+  sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+  parameters: [
+    'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181751&page=1&pageblock=1',
+    '국민 MC 유재석의 10가지 소통의 법칙 다섯번째....',
+    'strBoardID=tvnews',
+    'bbstype=tvstar',
+    'sdate=0',
+    'skind=',
+    'sword=',
+    'bidx=181751',
+    'page=1',
+    'pageblock=1',
+    '\n' +
+      '\t\t\t<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>\n' +
+      `   <span style="font-size: 22px;">내가 '하고' 싶어 하는 말보다 상대방이 '듣고' 싶은 말을 해라.</span>\n` +
+      '</p>\n' +
+      '\n' +
+      '\t\t\t\t',
+    1,
+    '2021-02-19 15:00:00.000',
+    '2021-02-21 17:09:26.738'
+  ]
+}
+[31merror[39m: undefined {"name":"SequelizeDatabaseError","parent":{"fatal":false,"errno":1146,"sqlState":"42S02","code":"ER_NO_SUCH_TABLE","sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181751&page=1&pageblock=1","국민 MC 유재석의 10가지 소통의 법칙 다섯번째....","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181751","page=1","pageblock=1","\n\t\t\t<p>\n   <br>\n</p>\n<p>\n   <span style=\"font-size: 22px;\">내가 '하고' 싶어 하는 말보다 상대방이 '듣고' 싶은 말을 해라.</span>\n</p>\n\n\t\t\t\t",1,"2021-02-19 15:00:00.000","2021-02-21 17:09:26.738"]},"original":{"fatal":false,"errno":1146,"sqlState":"42S02","code":"ER_NO_SUCH_TABLE","sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181751&page=1&pageblock=1","국민 MC 유재석의 10가지 소통의 법칙 다섯번째....","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181751","page=1","pageblock=1","\n\t\t\t<p>\n   <br>\n</p>\n<p>\n   <span style=\"font-size: 22px;\">내가 '하고' 싶어 하는 말보다 상대방이 '듣고' 싶은 말을 해라.</span>\n</p>\n\n\t\t\t\t",1,"2021-02-19 15:00:00.000","2021-02-21 17:09:26.738"]},"sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181751&page=1&pageblock=1","국민 MC 유재석의 10가지 소통의 법칙 다섯번째....","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181751","page=1","pageblock=1","\n\t\t\t<p>\n   <br>\n</p>\n<p>\n   <span style=\"font-size: 22px;\">내가 '하고' 싶어 하는 말보다 상대방이 '듣고' 싶은 말을 해라.</span>\n</p>\n\n\t\t\t\t",1,"2021-02-19 15:00:00.000","2021-02-21 17:09:26.738"],"timestamp":"2021-02-22 02:09:26"}
+[32minfo[39m: 허경환 회사에서 돈빼돌린 동업자 징역형 {"timestamp":"2021-02-22 02:09:29"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+DatabaseError [SequelizeDatabaseError]: (conn=88350, no: 1146, SQLState: 42S02) Table 'crawling.articles' doesn't exist
+sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+    at Query.formatError (/home/crawler/crawler/node_modules/sequelize/lib/dialects/mariadb/query.js:291:16)
+    at Query.run (/home/crawler/crawler/node_modules/sequelize/lib/dialects/mariadb/query.js:82:18)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async /home/crawler/crawler/node_modules/sequelize/lib/sequelize.js:619:16
+    at async MySQLQueryInterface.insert (/home/crawler/crawler/node_modules/sequelize/lib/dialects/abstract/query-interface.js:748:21)
+    at async Articles.save (/home/crawler/crawler/node_modules/sequelize/lib/model.js:3954:35)
+    at async Function.create (/home/crawler/crawler/node_modules/sequelize/lib/model.js:2207:12)
+    at async Object.module.exports.daily (/home/crawler/crawler/batchjob/daily.js:60:24)
+    at async /home/crawler/crawler/gulpfile.js:217:3 {
+  parent: SqlError: (conn=88350, no: 1146, SQLState: 42S02) Table 'crawling.articles' doesn't exist
+  sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+      at Object.module.exports.createError (/home/crawler/crawler/node_modules/mariadb/lib/misc/errors.js:55:10)
+      at PacketNodeEncoded.readError (/home/crawler/crawler/node_modules/mariadb/lib/io/packet.js:505:19)
+      at Query.readResponsePacket (/home/crawler/crawler/node_modules/mariadb/lib/cmd/resultset.js:46:28)
+      at PacketInputStream.receivePacketBasic (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:104:9)
+      at PacketInputStream.onData (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:169:20)
+      at Socket.emit (events.js:315:20)
+      at Socket.EventEmitter.emit (domain.js:529:15)
+      at addChunk (internal/streams/readable.js:309:12)
+      at readableAddChunk (internal/streams/readable.js:284:9)
+      at Socket.Readable.push (internal/streams/readable.js:223:10) {
+    fatal: false,
+    errno: 1146,
+    sqlState: '42S02',
+    code: 'ER_NO_SUCH_TABLE',
+    sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+    parameters: [
+      'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181748&page=1&pageblock=1',
+      '허경환 회사에서 돈빼돌린 동업자 징역형',
+      'strBoardID=tvnews',
+      'bbstype=tvstar',
+      'sdate=0',
+      'skind=',
+      'sword=',
+      'bidx=181748',
+      'page=1',
+      'pageblock=1',
+      '\n' +
+        '\t\t\t<p align="center">\n' +
+        '   <img style="width: 560px; height: 712px;" alt="/article/thumbnail.asp?thumb=nate%5Fcom%5F20210217%5F225420%2Ejpg" onclick="funImgView(this);" id="board_content_img" src="https://img.mimint.co.kr/tv/bbs/2021/2/17/20210217225634_vgeqdnoc.jpg">\n' +
+        '</p>\n' +
+        '<p align="center">&nbsp;</p>\n' +
+        '<p align="center">&nbsp;</p>\n' +
+        '<p align="center">\n' +
+        '   <br>와 잡힌건가요? 27억이라고 하네요 <br>징역 3년6개월<br>근데 이거살고 나오면 저돈은 어찌되나요?<br>없다고 하면 끝인가요??<br>너무하다 27억이라니....<br>요즘같은 시대에 어찌 이런일을\n' +
+        '</p>\n' +
+        '<p style="text-align: center;">&nbsp;</p>\n' +
+        '\n' +
+        '\t\t\t\t',
+      1,
+      '2021-02-19 15:00:00.000',
+      '2021-02-21 17:09:29.757'
+    ]
+  },
+  original: SqlError: (conn=88350, no: 1146, SQLState: 42S02) Table 'crawling.articles' doesn't exist
+  sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+      at Object.module.exports.createError (/home/crawler/crawler/node_modules/mariadb/lib/misc/errors.js:55:10)
+      at PacketNodeEncoded.readError (/home/crawler/crawler/node_modules/mariadb/lib/io/packet.js:505:19)
+      at Query.readResponsePacket (/home/crawler/crawler/node_modules/mariadb/lib/cmd/resultset.js:46:28)
+      at PacketInputStream.receivePacketBasic (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:104:9)
+      at PacketInputStream.onData (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:169:20)
+      at Socket.emit (events.js:315:20)
+      at Socket.EventEmitter.emit (domain.js:529:15)
+      at addChunk (internal/streams/readable.js:309:12)
+      at readableAddChunk (internal/streams/readable.js:284:9)
+      at Socket.Readable.push (internal/streams/readable.js:223:10) {
+    fatal: false,
+    errno: 1146,
+    sqlState: '42S02',
+    code: 'ER_NO_SUCH_TABLE',
+    sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+    parameters: [
+      'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181748&page=1&pageblock=1',
+      '허경환 회사에서 돈빼돌린 동업자 징역형',
+      'strBoardID=tvnews',
+      'bbstype=tvstar',
+      'sdate=0',
+      'skind=',
+      'sword=',
+      'bidx=181748',
+      'page=1',
+      'pageblock=1',
+      '\n' +
+        '\t\t\t<p align="center">\n' +
+        '   <img style="width: 560px; height: 712px;" alt="/article/thumbnail.asp?thumb=nate%5Fcom%5F20210217%5F225420%2Ejpg" onclick="funImgView(this);" id="board_content_img" src="https://img.mimint.co.kr/tv/bbs/2021/2/17/20210217225634_vgeqdnoc.jpg">\n' +
+        '</p>\n' +
+        '<p align="center">&nbsp;</p>\n' +
+        '<p align="center">&nbsp;</p>\n' +
+        '<p align="center">\n' +
+        '   <br>와 잡힌건가요? 27억이라고 하네요 <br>징역 3년6개월<br>근데 이거살고 나오면 저돈은 어찌되나요?<br>없다고 하면 끝인가요??<br>너무하다 27억이라니....<br>요즘같은 시대에 어찌 이런일을\n' +
+        '</p>\n' +
+        '<p style="text-align: center;">&nbsp;</p>\n' +
+        '\n' +
+        '\t\t\t\t',
+      1,
+      '2021-02-19 15:00:00.000',
+      '2021-02-21 17:09:29.757'
+    ]
+  },
+  sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+  parameters: [
+    'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181748&page=1&pageblock=1',
+    '허경환 회사에서 돈빼돌린 동업자 징역형',
+    'strBoardID=tvnews',
+    'bbstype=tvstar',
+    'sdate=0',
+    'skind=',
+    'sword=',
+    'bidx=181748',
+    'page=1',
+    'pageblock=1',
+    '\n' +
+      '\t\t\t<p align="center">\n' +
+      '   <img style="width: 560px; height: 712px;" alt="/article/thumbnail.asp?thumb=nate%5Fcom%5F20210217%5F225420%2Ejpg" onclick="funImgView(this);" id="board_content_img" src="https://img.mimint.co.kr/tv/bbs/2021/2/17/20210217225634_vgeqdnoc.jpg">\n' +
+      '</p>\n' +
+      '<p align="center">&nbsp;</p>\n' +
+      '<p align="center">&nbsp;</p>\n' +
+      '<p align="center">\n' +
+      '   <br>와 잡힌건가요? 27억이라고 하네요 <br>징역 3년6개월<br>근데 이거살고 나오면 저돈은 어찌되나요?<br>없다고 하면 끝인가요??<br>너무하다 27억이라니....<br>요즘같은 시대에 어찌 이런일을\n' +
+      '</p>\n' +
+      '<p style="text-align: center;">&nbsp;</p>\n' +
+      '\n' +
+      '\t\t\t\t',
+    1,
+    '2021-02-19 15:00:00.000',
+    '2021-02-21 17:09:29.757'
+  ]
+}
+[31merror[39m: undefined {"name":"SequelizeDatabaseError","parent":{"fatal":false,"errno":1146,"sqlState":"42S02","code":"ER_NO_SUCH_TABLE","sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181748&page=1&pageblock=1","허경환 회사에서 돈빼돌린 동업자 징역형","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181748","page=1","pageblock=1","\n\t\t\t<p align=\"center\">\n   <img style=\"width: 560px; height: 712px;\" alt=\"/article/thumbnail.asp?thumb=nate%5Fcom%5F20210217%5F225420%2Ejpg\" onclick=\"funImgView(this);\" id=\"board_content_img\" src=\"https://img.mimint.co.kr/tv/bbs/2021/2/17/20210217225634_vgeqdnoc.jpg\">\n</p>\n<p align=\"center\">&nbsp;</p>\n<p align=\"center\">&nbsp;</p>\n<p align=\"center\">\n   <br>와 잡힌건가요? 27억이라고 하네요 <br>징역 3년6개월<br>근데 이거살고 나오면 저돈은 어찌되나요?<br>없다고 하면 끝인가요??<br>너무하다 27억이라니....<br>요즘같은 시대에 어찌 이런일을\n</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n\n\t\t\t\t",1,"2021-02-19 15:00:00.000","2021-02-21 17:09:29.757"]},"original":{"fatal":false,"errno":1146,"sqlState":"42S02","code":"ER_NO_SUCH_TABLE","sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181748&page=1&pageblock=1","허경환 회사에서 돈빼돌린 동업자 징역형","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181748","page=1","pageblock=1","\n\t\t\t<p align=\"center\">\n   <img style=\"width: 560px; height: 712px;\" alt=\"/article/thumbnail.asp?thumb=nate%5Fcom%5F20210217%5F225420%2Ejpg\" onclick=\"funImgView(this);\" id=\"board_content_img\" src=\"https://img.mimint.co.kr/tv/bbs/2021/2/17/20210217225634_vgeqdnoc.jpg\">\n</p>\n<p align=\"center\">&nbsp;</p>\n<p align=\"center\">&nbsp;</p>\n<p align=\"center\">\n   <br>와 잡힌건가요? 27억이라고 하네요 <br>징역 3년6개월<br>근데 이거살고 나오면 저돈은 어찌되나요?<br>없다고 하면 끝인가요??<br>너무하다 27억이라니....<br>요즘같은 시대에 어찌 이런일을\n</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n\n\t\t\t\t",1,"2021-02-19 15:00:00.000","2021-02-21 17:09:29.757"]},"sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181748&page=1&pageblock=1","허경환 회사에서 돈빼돌린 동업자 징역형","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181748","page=1","pageblock=1","\n\t\t\t<p align=\"center\">\n   <img style=\"width: 560px; height: 712px;\" alt=\"/article/thumbnail.asp?thumb=nate%5Fcom%5F20210217%5F225420%2Ejpg\" onclick=\"funImgView(this);\" id=\"board_content_img\" src=\"https://img.mimint.co.kr/tv/bbs/2021/2/17/20210217225634_vgeqdnoc.jpg\">\n</p>\n<p align=\"center\">&nbsp;</p>\n<p align=\"center\">&nbsp;</p>\n<p align=\"center\">\n   <br>와 잡힌건가요? 27억이라고 하네요 <br>징역 3년6개월<br>근데 이거살고 나오면 저돈은 어찌되나요?<br>없다고 하면 끝인가요??<br>너무하다 27억이라니....<br>요즘같은 시대에 어찌 이런일을\n</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n\n\t\t\t\t",1,"2021-02-19 15:00:00.000","2021-02-21 17:09:29.757"],"timestamp":"2021-02-22 02:09:29"}
+[02:10:03] Using gulpfile /home/crawler/crawler/gulpfile.js
+[02:10:03] Starting 'job:daily'...
+[32minfo[39m:  running job:daily !!!!!  {"timestamp":"2021-02-22 02:10:03"}
+daily job start
+(node:27398) [SEQUELIZE0006] DeprecationWarning: This database engine version is not supported, please update your database server. More information https://github.com/sequelize/sequelize/blob/main/ENGINE.md
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Executing (default): SELECT 1+1 AS result
+Connection has been established successfully.
+[32minfo[39m:  crawl :: /talk/ {"timestamp":"2021-02-22 02:10:04"}
+Executing (default): CREATE TABLE IF NOT EXISTS `articles` (`id` INTEGER NOT NULL auto_increment , `url` VARCHAR(255) NOT NULL, `name` VARCHAR(255), `title` VARCHAR(255), `opt1` VARCHAR(255), `opt2` VARCHAR(255), `opt3` VARCHAR(255), `opt4` VARCHAR(255), `opt5` VARCHAR(255), `opt6` VARCHAR(255), `opt7` VARCHAR(255), `opt8` VARCHAR(255), `opt9` VARCHAR(255), `opt10` VARCHAR(255), `content` TEXT, `status` INTEGER DEFAULT 0, `lastmod` DATETIME, `createDt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `articles`
+Executing (default): CREATE TABLE IF NOT EXISTS `contents` (`id` INTEGER NOT NULL auto_increment , `url` VARCHAR(255) NOT NULL, `name` VARCHAR(255), `title` VARCHAR(255), `opt1` VARCHAR(255), `opt2` VARCHAR(255), `opt3` VARCHAR(255), `opt4` VARCHAR(255), `opt5` VARCHAR(255), `content` BLOB, `status` INTEGER DEFAULT 0, `lastmod` DATETIME, `createDt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `contents`
+Executing (default): CREATE TABLE IF NOT EXISTS `contents_parsed` (`id` INTEGER NOT NULL auto_increment , `content_id` INTEGER DEFAULT 0, `url` VARCHAR(255) NOT NULL, `title` VARCHAR(255) DEFAULT '', `opt1` VARCHAR(255) DEFAULT '', `opt2` VARCHAR(255) DEFAULT '', `opt3` VARCHAR(255) DEFAULT '', `opt4` VARCHAR(255) DEFAULT '', `opt5` VARCHAR(255) DEFAULT '', `content` TEXT, `lastmod` DATETIME, `parsed_at` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `contents_parsed`
+[32minfo[39m:  crawl :: /food_n/ {"timestamp":"2021-02-22 02:10:11"}
+[32minfo[39m:  crawl :: /baby_n/ {"timestamp":"2021-02-22 02:10:15"}
+[32minfo[39m:  crawl :: /love_n/ {"timestamp":"2021-02-22 02:10:19"}
+[32minfo[39m:  crawl :: /life/ {"timestamp":"2021-02-22 02:10:22"}
+/bbs/list.asp?strBoardID=story&bbstype=chatter
+[32minfo[39m: 수경재배 도와두세요 {"timestamp":"2021-02-22 02:10:30"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  1
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2583, warningStatus: 0 }
+[32minfo[39m: 전세만기 전에 집 뺄때 주의할점? {"timestamp":"2021-02-22 02:10:35"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  2
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2584, warningStatus: 0 }
+[32minfo[39m: 명절대비 컴퓨터 셋팅 완료 {"timestamp":"2021-02-22 02:10:39"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  3
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2585, warningStatus: 0 }
+[32minfo[39m: 덜튀면서 예쁜이름? {"timestamp":"2021-02-22 02:10:40"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  4
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2586, warningStatus: 0 }
+[32minfo[39m: 수도요금 누진세 {"timestamp":"2021-02-22 02:10:42"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  5
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2587, warningStatus: 0 }
+[32minfo[39m: 미국에서 다이어트 식품으로 팔린다는 뻥튀기 {"timestamp":"2021-02-22 02:10:46"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  6
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2588, warningStatus: 0 }
+[32minfo[39m: 보일러 예약이 원래 추운가요? {"timestamp":"2021-02-22 02:10:48"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  7
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2589, warningStatus: 0 }
+[32minfo[39m: 배우 지창욱 너무 좋아요 {"timestamp":"2021-02-22 02:10:52"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  8
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2590, warningStatus: 0 }
+[32minfo[39m: 지역케이블 인터넷 괜찮나요? {"timestamp":"2021-02-22 02:10:58"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  9
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2591, warningStatus: 0 }
+[32minfo[39m: 사회초년생 돈 어케 모아요? {"timestamp":"2021-02-22 02:11:05"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  10
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2592, warningStatus: 0 }
+[32minfo[39m: 청바지 언제 버리세요? {"timestamp":"2021-02-22 02:11:08"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  11
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2593, warningStatus: 0 }
+[32minfo[39m: 20살 여자 선물! {"timestamp":"2021-02-22 02:11:10"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  12
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2594, warningStatus: 0 }
+[32minfo[39m: 대학입학 선물은 뭘로? {"timestamp":"2021-02-22 02:11:13"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  13
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2595, warningStatus: 0 }
+[32minfo[39m: 세뱃돈 {"timestamp":"2021-02-22 02:11:17"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  14
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2596, warningStatus: 0 }
+[32minfo[39m: 학교폭력 당한 아들 가해자를 팬 아버지 {"timestamp":"2021-02-22 02:11:20"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  15
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2597, warningStatus: 0 }
+[32minfo[39m: 쉬는날이 너무빨리지나가네요ㅠㅠㅠ {"timestamp":"2021-02-22 02:11:23"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  16
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2598, warningStatus: 0 }
+[32minfo[39m: 밝은세상안과에서 스마일 라식 {"timestamp":"2021-02-22 02:11:26"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  17
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2599, warningStatus: 0 }
+[32minfo[39m: 따뜻한 날이 오면 좀 나을까요 {"timestamp":"2021-02-22 02:11:30"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  18
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2600, warningStatus: 0 }
+[32minfo[39m: 이제 졸업하는데,,, 졸업하기 싫어요 ㅠㅠ {"timestamp":"2021-02-22 02:11:34"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  19
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2601, warningStatus: 0 }
+[32minfo[39m: 꿈을 몇개나 꾼건지 {"timestamp":"2021-02-22 02:11:39"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  20
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2602, warningStatus: 0 }
+[32minfo[39m: 대학졸업식날 뭐하면 되나요,, {"timestamp":"2021-02-22 02:11:42"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  21
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2603, warningStatus: 0 }
+[32minfo[39m: 부모님 효도는 정말 돈이 정답일까? {"timestamp":"2021-02-22 02:11:46"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  22
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2604, warningStatus: 0 }
+[32minfo[39m: 다들 대면인가요 비대면인가여 {"timestamp":"2021-02-22 02:11:52"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  23
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2605, warningStatus: 0 }
+[32minfo[39m: 동생 선물 뭐가 나을까요 {"timestamp":"2021-02-22 02:11:58"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  24
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2606, warningStatus: 0 }
+[32minfo[39m: 막장드라마 이제 못보겠음 {"timestamp":"2021-02-22 02:12:02"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  25
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2607, warningStatus: 0 }
+/bbs/list.asp?strBoardID=tvnews&bbstype=tvstar
+[32minfo[39m: 연예인 싸움 서열 1위 {"timestamp":"2021-02-22 02:12:10"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  26
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 605, warningStatus: 0 }
+[32minfo[39m: 국민 MC 유재석의 10가지 소통의 법칙 여섯번째.... {"timestamp":"2021-02-22 02:12:14"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  27
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 606, warningStatus: 0 }
+[32minfo[39m: 청룡 영화제 리허설때 김혜수 포스 {"timestamp":"2021-02-22 02:12:16"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  28
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 607, warningStatus: 0 }
+[32minfo[39m: 신승태, ‘트롯 전국체전’ 결승 무대가 기대되는 이유 ‘셋’ {"timestamp":"2021-02-22 02:12:24"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+error :: parseContent
+Error: getaddrinfo ENOTFOUND https
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:67:26)
+    at GetAddrInfoReqWrap.callbackTrampoline (internal/async_hooks.js:131:14) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'https',
+  config: {
+    url: 'blob:https://m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7',
+    method: 'get',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'User-Agent': 'axios/0.21.1'
+    },
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    adapter: [Function: httpAdapter],
+    responseType: 'stream',
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    validateStatus: [Function: validateStatus],
+    data: undefined
+  },
+  request: <ref *1> Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      afterWriteTickInfo: null,
+      buffered: [],
+      bufferedIndex: 0,
+      allBuffers: true,
+      allNoop: true,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: true,
+      errored: null,
+      closed: false
+    },
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      protocol: 'http:',
+      path: '//m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7',
+      method: 'GET',
+      headers: [Object],
+      agent: undefined,
+      agents: [Object],
+      auth: undefined,
+      hostname: 'https',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '//m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7'
+    },
+    _ended: true,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 0,
+    _requestBodyBuffers: [],
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [Socket],
+      _header: 'GET //m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7 HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: axios/0.21.1\r\n' +
+        'Host: https\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      path: '//m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'https',
+      protocol: 'http:',
+      _redirectable: [Circular *1],
+      [Symbol(kCapture)]: false,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'http://https//m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7',
+    [Symbol(kCapture)]: false
+  },
+  response: undefined,
+  isAxiosError: true,
+  toJSON: [Function: toJSON]
+}
+[31merror[39m: undefined {"config":{"url":"blob:https://m.mimint.co.kr/a049e520-4c81-4cc4-a7c9-2c57abeb4bf7","method":"get","headers":{"Accept":"application/json, text/plain, */*","User-Agent":"axios/0.21.1"},"transformRequest":[null],"transformResponse":[null],"timeout":0,"responseType":"stream","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN","maxContentLength":-1,"maxBodyLength":-1},"code":"ENOTFOUND"}
+[32minfo[39m: 이렇게 생겨서 빠나나 장수가 되어버린 남돌 {"timestamp":"2021-02-22 02:12:28"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+error :: parseContent
+Error: Request failed with status code 400
+    at createError (/home/crawler/crawler/node_modules/axios/lib/core/createError.js:16:15)
+    at settle (/home/crawler/crawler/node_modules/axios/lib/core/settle.js:17:12)
+    at RedirectableRequest.handleResponse (/home/crawler/crawler/node_modules/axios/lib/adapters/http.js:231:9)
+    at RedirectableRequest.emit (events.js:315:20)
+    at RedirectableRequest.EventEmitter.emit (domain.js:529:15)
+    at RedirectableRequest._processResponse (/home/crawler/crawler/node_modules/follow-redirects/index.js:380:10)
+    at ClientRequest.RedirectableRequest._onNativeResponse (/home/crawler/crawler/node_modules/follow-redirects/index.js:56:10)
+    at Object.onceWrapper (events.js:422:26)
+    at ClientRequest.emit (events.js:315:20)
+    at ClientRequest.EventEmitter.emit (domain.js:529:15) {
+  config: {
+    url: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+    method: 'get',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'User-Agent': 'axios/0.21.1'
+    },
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    adapter: [Function: httpAdapter],
+    responseType: 'stream',
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    validateStatus: [Function: validateStatus],
+    data: undefined
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      socket: [Function (anonymous)],
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      prefinish: [Function: requestOnPrefinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: false,
+    _last: true,
+    chunkedEncoding: false,
+    shouldKeepAlive: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: false,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    _contentLength: 0,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: '1.bp.blogspot.com',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 11,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: '1.bp.blogspot.com',
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: [HTTPParser],
+      _httpMessage: [Circular *1],
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: 15633,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object],
+      [Symbol(RequestTimeout)]: undefined
+    },
+    _header: 'GET /-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'User-Agent: axios/0.21.1\r\n' +
+      'Host: 1.bp.blogspot.com\r\n' +
+      'Connection: close\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: noopPendingOutput],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      defaultPort: 443,
+      protocol: 'https:',
+      options: [Object],
+      requests: {},
+      sockets: [Object],
+      freeSockets: {},
+      keepAliveMsecs: 1000,
+      keepAlive: false,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'fifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 1,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      [Symbol(kCapture)]: false
+    },
+    socketPath: undefined,
+    method: 'GET',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    path: '/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+    _ended: false,
+    res: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      socket: [TLSSocket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: false,
+      headers: [Object],
+      rawHeaders: [Array],
+      trailers: {},
+      rawTrailers: [],
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      client: [TLSSocket],
+      _consuming: false,
+      _dumped: false,
+      req: [Circular *1],
+      responseUrl: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      redirects: [],
+      [Symbol(kCapture)]: false,
+      [Symbol(RequestTimeout)]: undefined
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: HTTPParser {
+      '1': [Function: parserOnHeaders],
+      '2': [Function: parserOnHeadersComplete],
+      '3': [Function: parserOnBody],
+      '4': [Function: parserOnMessageComplete],
+      '5': null,
+      '6': null,
+      _headers: [],
+      _url: '',
+      socket: [TLSSocket],
+      incoming: [IncomingMessage],
+      outgoing: [Circular *1],
+      maxHeaderPairs: 2000,
+      _consumed: false,
+      onIncoming: [Function: parserOnIncomingClient],
+      [Symbol(resource_symbol)]: [HTTPClientAsyncResource]
+    },
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: '1.bp.blogspot.com',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _writableState: [WritableState],
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 0,
+      _requestBodyBuffers: [],
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(kCapture)]: false,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      'user-agent': [Array],
+      host: [Array]
+    }
+  },
+  response: {
+    status: 400,
+    statusText: 'Bad Request',
+    headers: {
+      vary: 'Origin',
+      'access-control-allow-origin': '*',
+      'timing-allow-origin': '*',
+      'content-type': 'text/html; charset=UTF-8',
+      'x-content-type-options': 'nosniff',
+      date: 'Sun, 21 Feb 2021 17:12:29 GMT',
+      server: 'fife',
+      'content-length': '1555',
+      'x-xss-protection': '0',
+      'alt-svc': 'h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"',
+      connection: 'close'
+    },
+    config: {
+      url: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      method: 'get',
+      headers: [Object],
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      adapter: [Function: httpAdapter],
+      responseType: 'stream',
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      validateStatus: [Function: validateStatus],
+      data: undefined
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      _header: 'GET /-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: axios/0.21.1\r\n' +
+        'Host: 1.bp.blogspot.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      path: '/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      _ended: false,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: [HTTPParser],
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: '1.bp.blogspot.com',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(kCapture)]: false,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    data: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      socket: [TLSSocket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: false,
+      headers: [Object],
+      rawHeaders: [Array],
+      trailers: {},
+      rawTrailers: [],
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      client: [TLSSocket],
+      _consuming: false,
+      _dumped: false,
+      req: [ClientRequest],
+      responseUrl: 'https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg',
+      redirects: [],
+      [Symbol(kCapture)]: false,
+      [Symbol(RequestTimeout)]: undefined
+    }
+  },
+  isAxiosError: true,
+  toJSON: [Function: toJSON]
+}
+[31merror[39m: undefined {"config":{"url":"https://1.bp.blogspot.com/-tcrpaEQznLw/YDDPOmhMu1I/AAAAAAAANl0/6eHREZwyRXstpDsc3zMSNSxm24piCzGBwCLcBGAsYHQ/s1800//article/thumbnail.asp?thumb=1%2Ejpg","method":"get","headers":{"Accept":"application/json, text/plain, */*","User-Agent":"axios/0.21.1"},"transformRequest":[null],"transformResponse":[null],"timeout":0,"responseType":"stream","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN","maxContentLength":-1,"maxBodyLength":-1}}
+[32minfo[39m: 중독성 쩌는 걸그룹 위클리 틱톡 {"timestamp":"2021-02-22 02:12:31"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  31
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 608, warningStatus: 0 }
+[32minfo[39m: 사장님귀는 당나귀귀 걸뱅이분식 계속하는거에요?? {"timestamp":"2021-02-22 02:12:34"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  32
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 609, warningStatus: 0 }
+[32minfo[39m: 아이유는 진짜 미담이 많은거 같아요 {"timestamp":"2021-02-22 02:12:41"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  33
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 610, warningStatus: 0 }
+[32minfo[39m: 국민 MC 유재석의 10가지 소통의 법칙 다섯번째.... {"timestamp":"2021-02-22 02:12:45"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  34
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 611, warningStatus: 0 }
+[32minfo[39m: 허경환 회사에서 돈빼돌린 동업자 징역형 {"timestamp":"2021-02-22 02:12:51"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  35
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 612, warningStatus: 0 }
+[32minfo[39m: 스위트홈 차현수 옷 입고 컨셉 포토 찍은 가수 {"timestamp":"2021-02-22 02:12:55"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+DatabaseError [SequelizeDatabaseError]: (conn=88378, no: 1366, SQLState: HY000) Incorrect string value: '\xF0\x9F\x98\xAD\xF0\x9F...' for column 'content' at row 1
+sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+    at Query.formatError (/home/crawler/crawler/node_modules/sequelize/lib/dialects/mariadb/query.js:291:16)
+    at Query.run (/home/crawler/crawler/node_modules/sequelize/lib/dialects/mariadb/query.js:82:18)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async /home/crawler/crawler/node_modules/sequelize/lib/sequelize.js:619:16
+    at async MySQLQueryInterface.insert (/home/crawler/crawler/node_modules/sequelize/lib/dialects/abstract/query-interface.js:748:21)
+    at async Articles.save (/home/crawler/crawler/node_modules/sequelize/lib/model.js:3954:35)
+    at async Function.create (/home/crawler/crawler/node_modules/sequelize/lib/model.js:2207:12)
+    at async Object.module.exports.daily (/home/crawler/crawler/batchjob/daily.js:60:24)
+    at async /home/crawler/crawler/gulpfile.js:217:3 {
+  parent: SqlError: (conn=88378, no: 1366, SQLState: HY000) Incorrect string value: '\xF0\x9F\x98\xAD\xF0\x9F...' for column 'content' at row 1
+  sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+      at Object.module.exports.createError (/home/crawler/crawler/node_modules/mariadb/lib/misc/errors.js:55:10)
+      at PacketNodeEncoded.readError (/home/crawler/crawler/node_modules/mariadb/lib/io/packet.js:505:19)
+      at Query.readResponsePacket (/home/crawler/crawler/node_modules/mariadb/lib/cmd/resultset.js:46:28)
+      at PacketInputStream.receivePacketBasic (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:104:9)
+      at PacketInputStream.onData (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:169:20)
+      at Socket.emit (events.js:315:20)
+      at Socket.EventEmitter.emit (domain.js:529:15)
+      at addChunk (internal/streams/readable.js:309:12)
+      at readableAddChunk (internal/streams/readable.js:284:9)
+      at Socket.Readable.push (internal/streams/readable.js:223:10) {
+    fatal: false,
+    errno: 1366,
+    sqlState: 'HY000',
+    code: 'ER_TRUNCATED_WRONG_VALUE_FOR_FIELD',
+    sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+    parameters: [
+      'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181746&page=1&pageblock=1',
+      '스위트홈 차현수 옷 입고 컨셉 포토 찍은 가수',
+      'strBoardID=tvnews',
+      'bbstype=tvstar',
+      'sdate=0',
+      'skind=',
+      'sword=',
+      'bidx=181746',
+      'page=1',
+      'pageblock=1',
+      '\n' +
+        '\t\t\t<p>데미안 이번에 싱글 앨범</p>\n' +
+        '<p>컨셉포토 떴는데</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <img src="https://1.bp.blogspot.com/-nT3Rz3_WHFo/YC9_6xipLDI/AAAAAAAAA2k/ypAy9gZXG5QkQZ8SdofIa05yiKWs5tcYACLcBGAsYHQ/s966/1.jpg">\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <img src="https://1.bp.blogspot.com/-VI-ZptFaqhY/YC9_61wmv1I/AAAAAAAAA2s/XgcRyETbt2Eu_M7cvQwiWIBIiPpsv_f0QCLcBGAsYHQ/s773/2.jpg">\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>입고 찍은 옷이 스위트홈에서</p>\n' +
+        '<p>송강이 입었던거랑 똑같음!!</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>특히 이 사진</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <img src="https://1.bp.blogspot.com/-1csVO4N_gx8/YC9_68SC2eI/AAAAAAAAA2o/JgYF5PdR3LItZlbIThlZzc0TGTb82Vm0gCLcBGAsYHQ/s773/3.jpg">\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <img src="https://1.bp.blogspot.com/-YhifDK3GI1g/YC9_7usFr_I/AAAAAAAAA2w/kjyI_tqDjO0RPc-CbzyMVmtcIFaDADMRQCLcBGAsYHQ/s966/4.jpg">\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>분위기 비슷한거봐</p>\n' +
+        '<p>나 또 심장뛰네...</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>데미안 스위트홈 컨셉이라니ㅠㅠㅠ</p>\n' +
+        '<p>둘 다 처돌이는 웁니다😭😭...</p>\n' +
+        '\n' +
+        '\t\t\t\t',
+      1,
+      '2021-02-18 15:00:00.000',
+      '2021-02-21 17:12:55.104'
+    ]
+  },
+  original: SqlError: (conn=88378, no: 1366, SQLState: HY000) Incorrect string value: '\xF0\x9F\x98\xAD\xF0\x9F...' for column 'content' at row 1
+  sql: INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?); - parameters:['https://www.mimint.co.kr/bbs/view.asp?strBoardID=t...]
+      at Object.module.exports.createError (/home/crawler/crawler/node_modules/mariadb/lib/misc/errors.js:55:10)
+      at PacketNodeEncoded.readError (/home/crawler/crawler/node_modules/mariadb/lib/io/packet.js:505:19)
+      at Query.readResponsePacket (/home/crawler/crawler/node_modules/mariadb/lib/cmd/resultset.js:46:28)
+      at PacketInputStream.receivePacketBasic (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:104:9)
+      at PacketInputStream.onData (/home/crawler/crawler/node_modules/mariadb/lib/io/packet-input-stream.js:169:20)
+      at Socket.emit (events.js:315:20)
+      at Socket.EventEmitter.emit (domain.js:529:15)
+      at addChunk (internal/streams/readable.js:309:12)
+      at readableAddChunk (internal/streams/readable.js:284:9)
+      at Socket.Readable.push (internal/streams/readable.js:223:10) {
+    fatal: false,
+    errno: 1366,
+    sqlState: 'HY000',
+    code: 'ER_TRUNCATED_WRONG_VALUE_FOR_FIELD',
+    sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+    parameters: [
+      'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181746&page=1&pageblock=1',
+      '스위트홈 차현수 옷 입고 컨셉 포토 찍은 가수',
+      'strBoardID=tvnews',
+      'bbstype=tvstar',
+      'sdate=0',
+      'skind=',
+      'sword=',
+      'bidx=181746',
+      'page=1',
+      'pageblock=1',
+      '\n' +
+        '\t\t\t<p>데미안 이번에 싱글 앨범</p>\n' +
+        '<p>컨셉포토 떴는데</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <img src="https://1.bp.blogspot.com/-nT3Rz3_WHFo/YC9_6xipLDI/AAAAAAAAA2k/ypAy9gZXG5QkQZ8SdofIa05yiKWs5tcYACLcBGAsYHQ/s966/1.jpg">\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <img src="https://1.bp.blogspot.com/-VI-ZptFaqhY/YC9_61wmv1I/AAAAAAAAA2s/XgcRyETbt2Eu_M7cvQwiWIBIiPpsv_f0QCLcBGAsYHQ/s773/2.jpg">\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>입고 찍은 옷이 스위트홈에서</p>\n' +
+        '<p>송강이 입었던거랑 똑같음!!</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>특히 이 사진</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <img src="https://1.bp.blogspot.com/-1csVO4N_gx8/YC9_68SC2eI/AAAAAAAAA2o/JgYF5PdR3LItZlbIThlZzc0TGTb82Vm0gCLcBGAsYHQ/s773/3.jpg">\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <img src="https://1.bp.blogspot.com/-YhifDK3GI1g/YC9_7usFr_I/AAAAAAAAA2w/kjyI_tqDjO0RPc-CbzyMVmtcIFaDADMRQCLcBGAsYHQ/s966/4.jpg">\n' +
+        '</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>분위기 비슷한거봐</p>\n' +
+        '<p>나 또 심장뛰네...</p>\n' +
+        '<p>\n' +
+        '   <br>\n' +
+        '</p>\n' +
+        '<p>데미안 스위트홈 컨셉이라니ㅠㅠㅠ</p>\n' +
+        '<p>둘 다 처돌이는 웁니다😭😭...</p>\n' +
+        '\n' +
+        '\t\t\t\t',
+      1,
+      '2021-02-18 15:00:00.000',
+      '2021-02-21 17:12:55.104'
+    ]
+  },
+  sql: 'INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+  parameters: [
+    'https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181746&page=1&pageblock=1',
+    '스위트홈 차현수 옷 입고 컨셉 포토 찍은 가수',
+    'strBoardID=tvnews',
+    'bbstype=tvstar',
+    'sdate=0',
+    'skind=',
+    'sword=',
+    'bidx=181746',
+    'page=1',
+    'pageblock=1',
+    '\n' +
+      '\t\t\t<p>데미안 이번에 싱글 앨범</p>\n' +
+      '<p>컨셉포토 떴는데</p>\n' +
+      '<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>\n' +
+      '   <img src="https://1.bp.blogspot.com/-nT3Rz3_WHFo/YC9_6xipLDI/AAAAAAAAA2k/ypAy9gZXG5QkQZ8SdofIa05yiKWs5tcYACLcBGAsYHQ/s966/1.jpg">\n' +
+      '</p>\n' +
+      '<p>\n' +
+      '   <img src="https://1.bp.blogspot.com/-VI-ZptFaqhY/YC9_61wmv1I/AAAAAAAAA2s/XgcRyETbt2Eu_M7cvQwiWIBIiPpsv_f0QCLcBGAsYHQ/s773/2.jpg">\n' +
+      '</p>\n' +
+      '<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>입고 찍은 옷이 스위트홈에서</p>\n' +
+      '<p>송강이 입었던거랑 똑같음!!</p>\n' +
+      '<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>특히 이 사진</p>\n' +
+      '<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>\n' +
+      '   <img src="https://1.bp.blogspot.com/-1csVO4N_gx8/YC9_68SC2eI/AAAAAAAAA2o/JgYF5PdR3LItZlbIThlZzc0TGTb82Vm0gCLcBGAsYHQ/s773/3.jpg">\n' +
+      '</p>\n' +
+      '<p>\n' +
+      '   <img src="https://1.bp.blogspot.com/-YhifDK3GI1g/YC9_7usFr_I/AAAAAAAAA2w/kjyI_tqDjO0RPc-CbzyMVmtcIFaDADMRQCLcBGAsYHQ/s966/4.jpg">\n' +
+      '</p>\n' +
+      '<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>분위기 비슷한거봐</p>\n' +
+      '<p>나 또 심장뛰네...</p>\n' +
+      '<p>\n' +
+      '   <br>\n' +
+      '</p>\n' +
+      '<p>데미안 스위트홈 컨셉이라니ㅠㅠㅠ</p>\n' +
+      '<p>둘 다 처돌이는 웁니다😭😭...</p>\n' +
+      '\n' +
+      '\t\t\t\t',
+    1,
+    '2021-02-18 15:00:00.000',
+    '2021-02-21 17:12:55.104'
+  ]
+}
+[31merror[39m: undefined {"name":"SequelizeDatabaseError","parent":{"fatal":false,"errno":1366,"sqlState":"HY000","code":"ER_TRUNCATED_WRONG_VALUE_FOR_FIELD","sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181746&page=1&pageblock=1","스위트홈 차현수 옷 입고 컨셉 포토 찍은 가수","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181746","page=1","pageblock=1","\n\t\t\t<p>데미안 이번에 싱글 앨범</p>\n<p>컨셉포토 떴는데</p>\n<p>\n   <br>\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-nT3Rz3_WHFo/YC9_6xipLDI/AAAAAAAAA2k/ypAy9gZXG5QkQZ8SdofIa05yiKWs5tcYACLcBGAsYHQ/s966/1.jpg\">\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-VI-ZptFaqhY/YC9_61wmv1I/AAAAAAAAA2s/XgcRyETbt2Eu_M7cvQwiWIBIiPpsv_f0QCLcBGAsYHQ/s773/2.jpg\">\n</p>\n<p>\n   <br>\n</p>\n<p>입고 찍은 옷이 스위트홈에서</p>\n<p>송강이 입었던거랑 똑같음!!</p>\n<p>\n   <br>\n</p>\n<p>\n   <br>\n</p>\n<p>\n   <br>\n</p>\n<p>\n   <br>\n</p>\n<p>특히 이 사진</p>\n<p>\n   <br>\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-1csVO4N_gx8/YC9_68SC2eI/AAAAAAAAA2o/JgYF5PdR3LItZlbIThlZzc0TGTb82Vm0gCLcBGAsYHQ/s773/3.jpg\">\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-YhifDK3GI1g/YC9_7usFr_I/AAAAAAAAA2w/kjyI_tqDjO0RPc-CbzyMVmtcIFaDADMRQCLcBGAsYHQ/s966/4.jpg\">\n</p>\n<p>\n   <br>\n</p>\n<p>분위기 비슷한거봐</p>\n<p>나 또 심장뛰네...</p>\n<p>\n   <br>\n</p>\n<p>데미안 스위트홈 컨셉이라니ㅠㅠㅠ</p>\n<p>둘 다 처돌이는 웁니다😭😭...</p>\n\n\t\t\t\t",1,"2021-02-18 15:00:00.000","2021-02-21 17:12:55.104"]},"original":{"fatal":false,"errno":1366,"sqlState":"HY000","code":"ER_TRUNCATED_WRONG_VALUE_FOR_FIELD","sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181746&page=1&pageblock=1","스위트홈 차현수 옷 입고 컨셉 포토 찍은 가수","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181746","page=1","pageblock=1","\n\t\t\t<p>데미안 이번에 싱글 앨범</p>\n<p>컨셉포토 떴는데</p>\n<p>\n   <br>\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-nT3Rz3_WHFo/YC9_6xipLDI/AAAAAAAAA2k/ypAy9gZXG5QkQZ8SdofIa05yiKWs5tcYACLcBGAsYHQ/s966/1.jpg\">\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-VI-ZptFaqhY/YC9_61wmv1I/AAAAAAAAA2s/XgcRyETbt2Eu_M7cvQwiWIBIiPpsv_f0QCLcBGAsYHQ/s773/2.jpg\">\n</p>\n<p>\n   <br>\n</p>\n<p>입고 찍은 옷이 스위트홈에서</p>\n<p>송강이 입었던거랑 똑같음!!</p>\n<p>\n   <br>\n</p>\n<p>\n   <br>\n</p>\n<p>\n   <br>\n</p>\n<p>\n   <br>\n</p>\n<p>특히 이 사진</p>\n<p>\n   <br>\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-1csVO4N_gx8/YC9_68SC2eI/AAAAAAAAA2o/JgYF5PdR3LItZlbIThlZzc0TGTb82Vm0gCLcBGAsYHQ/s773/3.jpg\">\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-YhifDK3GI1g/YC9_7usFr_I/AAAAAAAAA2w/kjyI_tqDjO0RPc-CbzyMVmtcIFaDADMRQCLcBGAsYHQ/s966/4.jpg\">\n</p>\n<p>\n   <br>\n</p>\n<p>분위기 비슷한거봐</p>\n<p>나 또 심장뛰네...</p>\n<p>\n   <br>\n</p>\n<p>데미안 스위트홈 컨셉이라니ㅠㅠㅠ</p>\n<p>둘 다 처돌이는 웁니다😭😭...</p>\n\n\t\t\t\t",1,"2021-02-18 15:00:00.000","2021-02-21 17:12:55.104"]},"sql":"INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);","parameters":["https://www.mimint.co.kr/bbs/view.asp?strBoardID=tvnews&bbstype=tvstar&sdate=0&skind=&sword=&bidx=181746&page=1&pageblock=1","스위트홈 차현수 옷 입고 컨셉 포토 찍은 가수","strBoardID=tvnews","bbstype=tvstar","sdate=0","skind=","sword=","bidx=181746","page=1","pageblock=1","\n\t\t\t<p>데미안 이번에 싱글 앨범</p>\n<p>컨셉포토 떴는데</p>\n<p>\n   <br>\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-nT3Rz3_WHFo/YC9_6xipLDI/AAAAAAAAA2k/ypAy9gZXG5QkQZ8SdofIa05yiKWs5tcYACLcBGAsYHQ/s966/1.jpg\">\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-VI-ZptFaqhY/YC9_61wmv1I/AAAAAAAAA2s/XgcRyETbt2Eu_M7cvQwiWIBIiPpsv_f0QCLcBGAsYHQ/s773/2.jpg\">\n</p>\n<p>\n   <br>\n</p>\n<p>입고 찍은 옷이 스위트홈에서</p>\n<p>송강이 입었던거랑 똑같음!!</p>\n<p>\n   <br>\n</p>\n<p>\n   <br>\n</p>\n<p>\n   <br>\n</p>\n<p>\n   <br>\n</p>\n<p>특히 이 사진</p>\n<p>\n   <br>\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-1csVO4N_gx8/YC9_68SC2eI/AAAAAAAAA2o/JgYF5PdR3LItZlbIThlZzc0TGTb82Vm0gCLcBGAsYHQ/s773/3.jpg\">\n</p>\n<p>\n   <img src=\"https://1.bp.blogspot.com/-YhifDK3GI1g/YC9_7usFr_I/AAAAAAAAA2w/kjyI_tqDjO0RPc-CbzyMVmtcIFaDADMRQCLcBGAsYHQ/s966/4.jpg\">\n</p>\n<p>\n   <br>\n</p>\n<p>분위기 비슷한거봐</p>\n<p>나 또 심장뛰네...</p>\n<p>\n   <br>\n</p>\n<p>데미안 스위트홈 컨셉이라니ㅠㅠㅠ</p>\n<p>둘 다 처돌이는 웁니다😭😭...</p>\n\n\t\t\t\t",1,"2021-02-18 15:00:00.000","2021-02-21 17:12:55.104"],"timestamp":"2021-02-22 02:12:55"}
+[32minfo[39m: 내일 드디어 결승전(막방)인  트롯전국체전 {"timestamp":"2021-02-22 02:13:02"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  36
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 613, warningStatus: 0 }
+[32minfo[39m: 조병규 학폭의혹 결국 거짓말이었네요 {"timestamp":"2021-02-22 02:13:12"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  37
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 614, warningStatus: 0 }
+[32minfo[39m: 국민 MC 유재석의 10가지 소통의 법칙 네번째..... {"timestamp":"2021-02-22 02:13:16"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  38
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 615, warningStatus: 0 }
+[32minfo[39m: 음색 대박인 여자 아이돌 {"timestamp":"2021-02-22 02:13:21"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  39
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 616, warningStatus: 0 }
+[32minfo[39m: 독특한 컨셉 많이 했던 여자아이돌 {"timestamp":"2021-02-22 02:13:28"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  40
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 617, warningStatus: 0 }
+[32minfo[39m: 국민 MC 유재석의 10가지 소통의 법칙 세번째... {"timestamp":"2021-02-22 02:13:38"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  41
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 618, warningStatus: 0 }
+[32minfo[39m: 박재범 수장 AOMG,오늘(18일) 자정 새 아티스트 발표 {"timestamp":"2021-02-22 02:13:42"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  42
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 619, warningStatus: 0 }
+[32minfo[39m: 갑자기 조병규 학폭 의혹이라니... {"timestamp":"2021-02-22 02:13:48"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  43
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 620, warningStatus: 0 }
+[32minfo[39m: 싱어게인 요아리 학폭 논란 {"timestamp":"2021-02-22 02:13:51"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  44
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 621, warningStatus: 0 }
+[32minfo[39m: 팬들을 위해 홈트 영상까지 올려준 남돌 {"timestamp":"2021-02-22 02:14:02"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  45
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 622, warningStatus: 0 }
+[32minfo[39m: 박소현이 50대에요?! {"timestamp":"2021-02-22 02:14:07"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  46
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 623, warningStatus: 0 }
+[32minfo[39m: 틱톡 조현 {"timestamp":"2021-02-22 02:14:09"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  47
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 624, warningStatus: 0 }
+[32minfo[39m: 유아인 청룡 남우주연상 수상소감 {"timestamp":"2021-02-22 02:14:17"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  48
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 625, warningStatus: 0 }
+[32minfo[39m: 래퍼 빅나티(서동현), 첫 EP 트랙리스트 공개 {"timestamp":"2021-02-22 02:14:22"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  49
+Executing (default): UPDATE `articles` SET `content`=?,`status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 626, warningStatus: 0 }
+/bbs/list.asp?strBoardID=story&bbstype=worry
+[32minfo[39m: 세월이 가는걸 언제 느끼시나요? {"timestamp":"2021-02-22 02:14:32"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  50
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2608, warningStatus: 0 }
+[32minfo[39m: 28살도 뭐든 할 수 있는 나이에요.....? {"timestamp":"2021-02-22 02:14:39"}
+Executing (default): INSERT INTO `articles` (`id`,`url`,`title`,`opt1`,`opt2`,`opt3`,`opt4`,`opt5`,`opt6`,`opt7`,`opt8`,`content`,`status`,`lastmod`,`createDt`) VALUES (DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+ 	 ::  51
+Executing (default): UPDATE `articles` SET `status`=? WHERE `id` = ?
+OkPacket { affectedRows: 1, insertId: 2609, warningStatus: 0 }

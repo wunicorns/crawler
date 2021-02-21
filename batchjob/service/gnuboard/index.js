@@ -4,7 +4,7 @@ const {Database} = global.globalRequire('batchjob/database')
 
 class GnuboardHelper {
 
-  constructor(){    
+  constructor(){
     this.database = new Database(batchConfig);
   }
 
@@ -28,8 +28,9 @@ class GnuboardHelper {
       wr_subject varchar(255) NOT NULL,
       wr_content text NOT NULL,
       wr_seo_title varchar(255) NOT NULL DEFAULT '',
-      wr_link1 text NOT NULL,
-      wr_link2 text NOT NULL,
+      wr_url text NOT NULL DEFAULT '',
+      wr_link1 text NOT NULL DEFAULT '',
+      wr_link2 text NOT NULL DEFAULT '',
       wr_link1_hit int(11) NOT NULL DEFAULT '0',
       wr_link2_hit int(11) NOT NULL DEFAULT '0',
       wr_hit int(11) NOT NULL DEFAULT '0',
@@ -132,8 +133,9 @@ class GnuboardHelper {
         let boardData = Object.assign({}, articleTemplate, {
           wr_subject: arg.subject,
           wr_content: arg.content,
-          wr_link1: arg.link1,
-          wr_link2: arg.link2,
+          wr_link1: arg.link1 || ' ',
+          wr_link2: arg.link2 || ' ',
+          wr_url: arg.url || ' ',
           wr_datetime: arg.datetime
         })
 

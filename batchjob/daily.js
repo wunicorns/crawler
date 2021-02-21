@@ -8,6 +8,8 @@ const crawl = require('../utility/crawl');
 const logger = require('../utility/logger');
 const service = require('../service/contentsCrawler')
 
+const {GnuboardHelper} = require('./service/gnuboard');
+
 module.exports.daily = async function(){
 
   console.log('daily job start')
@@ -49,21 +51,33 @@ module.exports.daily = async function(){
         const dt = childs[childs.length - 1].children[0].data;
         const url = domain + childs[0].children.filter((el,i)=>el.name==='a')[0].attribs['href'];
 
-        // console.log(url, new Date(dt));
-        // const chk = await dbm.Contents.count({where: {url: url}});
-        // if(chk>0) await dbm.Contents.destroy({where: {url: url}});
-
-        let value = await service.crawlContentDetail({
+        let value = await service.crawlContent({
           url: url,
-          status: 3,
+          status: 1,
           lastmod: new Date(dt)
         });
 
-        let inserted = await dbm.Contents.create(value);
+        let inserted = await dbm.Articles.create(value);
 
-        await service.parseContent(inserted);
+        let article = await service.parseContent(inserted);
 
-        console.log(' \t :: ', inserted.id);
+        const cateId = value.opt1.split("=")[1];
+
+        const gnu = GnuboardHelper.build()
+
+        gnu.addArticle({
+          board: cateId,
+          subject: article.title,
+          content: article.content,
+          wr_url: article.url,
+          datetime: article.lastmod,
+        });
+
+        inserted.status = 2;
+        inserted.content = article.content;
+        inserted.save();
+
+        console.log(' \t :: ', article.id);
 
       } catch (error){
         console.log(error);
@@ -71,24 +85,5 @@ module.exports.daily = async function(){
       }
     }
   }
-
-  // const batch = cp.spawn('./node_modules/forever/bin/forever start batch.js', []);
-  //
-  // batch.stdout.on('data', (data) => {
-  //   console.log(`stdout: ${data}`);
-  // });
-  //
-  // batch.stderr.on('data', (data) => {
-  //   console.error(`stderr: ${data}`);
-  // });
-  //
-  // batch.on('close', (code) => {
-  //   console.log(`child process exited with code ${code}`);
-  // });
-  //
-  // batch.on('error', (err) => {
-  //   console.error(`child process error ${code}`);
-  // });
-
 
 }

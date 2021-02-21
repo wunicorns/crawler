@@ -57,7 +57,7 @@ router.get('/crawl/contents/:id', async (req, res, next)=>{
       board: cateId,
       subject: parsed.title,
       content: parsed.content,
-      link1: parsed.url,
+      wr_url: parsed.url,
       datetime: parsed.lastmod,
     });
 

@@ -33,6 +33,7 @@ let db = {
 
     db.Contents = model.Contents;
     db.ContentsParsed = model.ContentsParsed;
+    db.Articles = model.Articles;
 
   }
 }

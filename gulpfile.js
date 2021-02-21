@@ -106,7 +106,7 @@ gulp.task('contents:parse', async function(cb){
         board: cateId,
         subject: parsed.title,
         content: parsed.content,
-        link1: parsed.url,
+        // link1: parsed.url,
         datetime: parsed.lastmod,
       });
 
@@ -158,7 +158,72 @@ gulp.task('new:category', async function  (cb){
   console.log(`category run`);
 });
 
-gulp.task('new:article', async function(cb){
+gulp.task('articles', async function(cb){
+
+  logger.info('start !!! ');
+
+  config.init();
+
+  await dbm.init();
+
+  const service = require('./service/contentsCrawler')
+
+  let contentsList = await dbm.sequelize.query(' select id from contents '
+    , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
+
+  for(const row of contentsList){
+
+    try {
+
+      let content = await dbm.Contents.findOne({
+        where: { id: row.id }
+      });
+
+      await dbm.Articles.insert({
+        url: content.url
+        , name: content.name
+        , title: content.title
+        , opt1: content.opt1
+        , opt2: content.opt2
+        , opt3: content.opt3
+        , opt4: content.opt4
+        , opt5: content.opt5
+        , content: await service.parseContent(content)
+        , status: 2
+        , lastmod: content.lastmod
+      });
+
+      console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
+
+      content.status = 5;
+      content.save();
+
+      console.log('\t - contents :: ', content.id , ' done!')
+      
+    }catch(err){
+      console.error(err);
+    }
+  }
+
+  cb();
+
+});
+
+
+
+gulp.task('job:daily', async function(cb){
+
+  logger.info(' running job:daily !!!!! ')
+
+  const job = require('./batchjob/daily.js');
+
+  await job.daily();
+
+});
+
+
+
+gulp.task('test:daily', async function(cb){
 
   logger.info('start !!! ');
 
@@ -170,51 +235,44 @@ gulp.task('new:article', async function(cb){
 
   const service = require('./service/contentsCrawler')
 
-  let contentsList = await dbm.sequelize.query(' select id from contents where status = 1 '
+  let contentsList = await dbm.sequelize.query(' select * from articles where status = 1 '
     , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
 
-  for(const content of contentsList){
+  for(const row of contentsList){
     try {
 
-      console.log('contents :: ', content.id , ' start!')
+      let content = await dbm.Articles.findOne({
+        where: { id: row.id }
+      });
 
-      let [parsed, content] = await service.getParsedContent({id: content.id})
+      console.log('====================================================');
+      console.log('\t @ contents :: ', content.id, ", ", content.opt1);
 
-      console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
+      const cateId = content.opt1.split("=")[1];
 
-      const cateId = parsed.opt1.split("=")[1];
+      let parsed = await service.parseContent(content);
 
       const gnu = GnuboardHelper.build()
 
       gnu.addArticle({
         board: cateId,
-        subject: parsed.title,
+        subject: content.title,
         content: parsed.content,
-        link1: parsed.url,
-        datetime: parsed.lastmod,
+        wr_url: content.url,
+        datetime: content.lastmod,
       });
 
-      content.status = 1;
+      content.status = 2;
       content.save();
 
-      console.log('\t - contents :: ', content.id , ' done!')
+      console.log('\t - contents :: ', content.id , ' done!');
+
     }catch(err){
       console.error(err);
     }
   }
 
   cb();
-
-});
-
-
-gulp.task('job:daily', async function(cb){
-
-  logger.info(' running job:daily !!!!! ')
-
-  const job = require('./batchjob/daily.js');
-
-  await job.daily();
 
 });
 
