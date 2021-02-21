@@ -31,7 +31,7 @@ router.get('/', async (req, res, next)=>{
     let offset = 0;
     let limit = 30;
 
-    let categories = await dbm.Contents.findAll({
+    let categories = await dbm.Articles.findAll({
       attributes: ['opt1', [dbm.sequelize.fn('count', '*'), 'cnt']],
       group: ['opt1'],
       raw: true
@@ -49,7 +49,7 @@ router.get('/', async (req, res, next)=>{
 
     const op = dbm.sequelize;
 
-    let {rows, count} = await dbm.Contents.findAndCountAll({
+    let {rows, count} = await dbm.Articles.findAndCountAll({
       attributes: {
         include: [
           [op.fn('date_format', op.col('lastmod'), '%Y-%m-%d'), 'moddt'],

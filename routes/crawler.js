@@ -15,9 +15,9 @@ router.post('/crawl', async (req, res, next)=>{
 
     const site = req.body.site;
 
-    service.getSitemap(site);
+    // service.getSitemap(site);
 
-    res.json({});
+    res.json({site});
 
   }catch(err){
     next(err);
@@ -28,7 +28,7 @@ router.get('/crawl/contents', async (req, res, next)=>{
 
   try {
 
-    service.updateContents();
+    // service.updateContents();
 
     res.json({});
 
@@ -44,24 +44,25 @@ router.get('/crawl/contents/:id', async (req, res, next)=>{
 
     console.log(req.params);
 
-    // service.updateContents();
-    let [parsed, content] = await service.getParsedContent(req.params);
+    let content = await dbm.Articles.findOne({
+      where: { id: args.id }
+    });
 
-    console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
+    console.log('\t @ contents :: ', content.id, ", ", content.opt1);
 
-    const cateId = parsed.opt1.split("=")[1];
+    const cateId = content.opt1.split("=")[1];
 
     const gnu = GnuboardHelper.build()
 
     gnu.addArticle({
       board: cateId,
-      subject: parsed.title,
-      content: parsed.content,
-      wr_url: parsed.url,
-      datetime: parsed.lastmod,
+      subject: content.title,
+      content: content.content,
+      wr_url: content.url,
+      datetime: content.lastmod,
     });
 
-    content.status = 1;
+    content.status = 2;
     content.save();
 
     res.json(parsed);

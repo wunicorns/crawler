@@ -74,89 +74,89 @@ gulp.task('category', async function  (cb){
 * contents database -> gnuboard article
 * status === 3 inserted  not yet
 */
-gulp.task('contents:parse', async function(cb){
-
-  logger.info(' running contents:parse !!!!! ');
-
-  config.init();
-
-  await dbm.init();
-
-  const {GnuboardHelper} = require('./batchjob/service/gnuboard');
-
-  const service = require('./service/contentsCrawler')
-
-  let contentsList = await dbm.sequelize.query(' select id from contents where status = 3 '
-    , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
-
-  for(const content of contentsList){
-    try {
-
-      console.log('contents :: ', content.id , ' start!')
-
-      let [parsed, content] = await service.getParsedContent({id: content.id})
-
-      console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
-
-      const cateId = parsed.opt1.split("=")[1];
-
-      const gnu = GnuboardHelper.build()
-
-      gnu.addArticle({
-        board: cateId,
-        subject: parsed.title,
-        content: parsed.content,
-        // link1: parsed.url,
-        datetime: parsed.lastmod,
-      });
-
-      content.status = 1;
-      content.save();
-
-      console.log('\t - contents :: ', content.id , ' done!')
-    }catch(err){
-      console.error(err);
-    }
-  }
-
-  cb();
-});
+// gulp.task('contents:parse', async function(cb){
+//
+//   logger.info(' running contents:parse !!!!! ');
+//
+//   config.init();
+//
+//   await dbm.init();
+//
+//   const {GnuboardHelper} = require('./batchjob/service/gnuboard');
+//
+//   const service = require('./service/contentsCrawler')
+//
+//   let contentsList = await dbm.sequelize.query(' select id from contents where status = 3 '
+//     , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
+//
+//   for(const content of contentsList){
+//     try {
+//
+//       console.log('contents :: ', content.id , ' start!')
+//
+//       let [parsed, content] = await service.getParsedContent({id: content.id})
+//
+//       console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
+//
+//       const cateId = parsed.opt1.split("=")[1];
+//
+//       const gnu = GnuboardHelper.build()
+//
+//       gnu.addArticle({
+//         board: cateId,
+//         subject: parsed.title,
+//         content: parsed.content,
+//         // link1: parsed.url,
+//         datetime: parsed.lastmod,
+//       });
+//
+//       content.status = 1;
+//       content.save();
+//
+//       console.log('\t - contents :: ', content.id , ' done!')
+//     }catch(err){
+//       console.error(err);
+//     }
+//   }
+//
+//   cb();
+// });
 
 /*
 * contents group database -> gnuboard board
 */
-gulp.task('new:category', async function  (cb){
-  const {GnuboardHelper} = require('./batchjob/service/gnuboard');
-  config.init();
-  dbm.init().then(async ()=>{
-    try {
-      let result = await dbm.sequelize.query(' select opt1, count(*) from contents where status = 1 group by opt1 '
-        , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
-
-      for(const row of result){
-        const cateId = row.opt1.split("=")[1];
-        if(!cateId || !isNaN(cateId)) continue;
-
-        console.log(cateId);
-
-        const gnu = GnuboardHelper.build()
-
-        gnu.addBoard({
-          id: cateId,
-          groupId: 'community',
-          name: cateId
-        });
-
-      }
-    }catch(err){
-      console.error(err);
-    }finally {
-      database.close();
-      cb();
-    }
-  });
-  console.log(`category run`);
-});
+// gulp.task('new:category', async function  (cb){
+//   const {GnuboardHelper} = require('./batchjob/service/gnuboard');
+//   config.init();
+//   dbm.init().then(async ()=>{
+//     try {
+//       let result = await dbm.sequelize.query(' select opt1, count(*) from contents where status = 1 group by opt1 '
+//         , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
+//
+//       for(const row of result){
+//         const cateId = row.opt1.split("=")[1];
+//         if(!cateId || !isNaN(cateId)) continue;
+//
+//         console.log(cateId);
+//
+//         const gnu = GnuboardHelper.build()
+//
+//         gnu.addBoard({
+//           id: cateId,
+//           groupId: 'community',
+//           name: cateId
+//         });
+//
+//       }
+//     }catch(err){
+//       console.error(err);
+//     }finally {
+//       database.close();
+//       cb();
+//     }
+//   });
+//   console.log(`category run`);
+// });
 
 gulp.task('articles', async function(cb){
 
@@ -179,7 +179,15 @@ gulp.task('articles', async function(cb){
         where: { id: row.id }
       });
 
-      await dbm.Articles.insert({
+      let articleCount = await dbm.Articles.count({
+        where: {
+          url: content.url
+        }
+      });
+
+      if(articleCount > 0) continue;
+
+      let inserted = await dbm.Articles.create({
         url: content.url
         , name: content.name
         , title: content.title
@@ -188,18 +196,16 @@ gulp.task('articles', async function(cb){
         , opt3: content.opt3
         , opt4: content.opt4
         , opt5: content.opt5
-        , content: await service.parseContent(content)
-        , status: 2
+        , content: await service._parseContent(content)
+        , status: 1
         , lastmod: content.lastmod
       });
 
-      console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
+      console.log('\t @ contents :: ', inserted.id, ", ", inserted.opt1);
 
       content.status = 5;
       content.save();
 
-      console.log('\t - contents :: ', content.id , ' done!')
-      
     }catch(err){
       console.error(err);
     }
@@ -276,4 +282,4 @@ gulp.task('test:daily', async function(cb){
 
 });
 
-exports.default = gulp.series(['job:daily', 'contents:parse']);
+exports.default = gulp.series(['job:daily']);

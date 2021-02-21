@@ -57,6 +57,14 @@ module.exports.daily = async function(){
           lastmod: new Date(dt)
         });
 
+        let articleCount = await dbm.Articles.count({
+          where: {
+            url: content.url
+          }
+        });
+
+        if(articleCount > 0) continue;
+
         let inserted = await dbm.Articles.create(value);
 
         let article = await service.parseContent(inserted);

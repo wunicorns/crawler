@@ -74,7 +74,13 @@ async function parseContent (content) {
     let $imgs = $doc("img");
 
     for(const $img of $imgs){
+
       const src = $img.attribs['src'];
+
+      if(src.indexOf("?") > 0){
+        src = src.substring(src, src.indexOf("?"));
+      }
+
       let imgPath = src;
 
       if(!imgPath.startsWith('/')){
@@ -112,19 +118,26 @@ async function parseContent (content) {
 };
 
 
-
 async function _parseContent (content) {
+
   try {
+
     const siteRoot = '/home/webcnt/web';
 
-    let $doc = cheerio.load(content.content);
+    let $doc = cheerio.load(content.content)(".board_content");
 
     let html = $doc.html();
 
     let $imgs = $doc.find("img");
 
     for(const $img of $imgs){
+
       const src = $img.attribs['src'];
+
+      if(src.indexOf("?") > 0){
+        src = src.substring(src, src.indexOf("?"));
+      }
+
       let imgPath = src;
 
       if(!imgPath.startsWith('/')){
@@ -150,28 +163,7 @@ async function _parseContent (content) {
 
     }
 
-    let data = await dbm.Contents.findOne({
-      attributes: {exclude: [ 'content' ]},
-      raw: true,
-      where: { id: content.id }
-    });
-
-    let inserted = await dbm.ContentsParsed.create({
-      contentId: data.id
-      , url: data.url
-      , title: data.title
-      , opt1: data.opt1
-      , opt2: data.opt2
-      , opt3: data.opt3
-      , opt4: data.opt4
-      , opt5: data.opt5
-      , content: html
-      , lastmod: data.lastmod
-      , parsedAt: new Date()
-    });
-
-    // return inserted.get({plain: true});
-    return inserted;
+    return html;
 
   }catch(err){
     console.log('error :: parseContent');
@@ -179,8 +171,6 @@ async function _parseContent (content) {
     throw err;
   }
 };
-
-
 
 
 async function crawlContentDetail (args) {
@@ -295,6 +285,7 @@ module.exports = {
 
   getParsedContent,
   parseContent,
+  _parseContent,
   crawlContentDetail,
   crawlContent
 }
