@@ -130,14 +130,7 @@ class GnuboardHelper {
 
         const boardId = arg.board;
 
-        let boardData = Object.assign({}, articleTemplate, {
-          wr_subject: arg.subject,
-          wr_content: arg.content,
-          wr_link1: arg.link1 || ' ',
-          wr_link2: arg.link2 || ' ',
-          wr_url: arg.url || ' ',
-          wr_datetime: arg.datetime
-        })
+        let boardData = Object.assign({}, articleTemplate, arg)
 
         let keys = Object.keys(boardData)
         let values = Object.values(boardData)
@@ -156,9 +149,13 @@ class GnuboardHelper {
     } catch(err){
       console.error(err);
     }finally {
-      this.database.close();
+
     }
 
+  }
+
+  async close(){
+    this.database.close();
   }
 
   async getArticles(){

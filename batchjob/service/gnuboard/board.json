@@ -74,7 +74,7 @@
   , "bo_use_cert": ""
   , "bo_use_sns": "0"
   , "bo_use_captcha": "0"
-  , "bo_sort_field": ""
+  , "bo_sort_field": "wr_datetime desc"
   , "bo_1_subj": ""
   , "bo_2_subj": ""
   , "bo_3_subj": ""

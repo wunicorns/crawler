@@ -71,58 +71,6 @@ gulp.task('category', async function  (cb){
 });
 
 /*
-* contents database -> gnuboard article
-* status === 3 inserted  not yet
-*/
-// gulp.task('contents:parse', async function(cb){
-//
-//   logger.info(' running contents:parse !!!!! ');
-//
-//   config.init();
-//
-//   await dbm.init();
-//
-//   const {GnuboardHelper} = require('./batchjob/service/gnuboard');
-//
-//   const service = require('./service/contentsCrawler')
-//
-//   let contentsList = await dbm.sequelize.query(' select id from contents where status = 3 '
-//     , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
-//
-//   for(const content of contentsList){
-//     try {
-//
-//       console.log('contents :: ', content.id , ' start!')
-//
-//       let [parsed, content] = await service.getParsedContent({id: content.id})
-//
-//       console.log('\t @ contents :: ', parsed.id, ", ", parsed.opt1);
-//
-//       const cateId = parsed.opt1.split("=")[1];
-//
-//       const gnu = GnuboardHelper.build()
-//
-//       gnu.addArticle({
-//         board: cateId,
-//         subject: parsed.title,
-//         content: parsed.content,
-//         // link1: parsed.url,
-//         datetime: parsed.lastmod,
-//       });
-//
-//       content.status = 1;
-//       content.save();
-//
-//       console.log('\t - contents :: ', content.id , ' done!')
-//     }catch(err){
-//       console.error(err);
-//     }
-//   }
-//
-//   cb();
-// });
-
-/*
 * contents group database -> gnuboard board
 */
 // gulp.task('new:category', async function  (cb){
@@ -187,21 +135,39 @@ gulp.task('articles', async function(cb){
 
       if(articleCount > 0) continue;
 
-      let inserted = await dbm.Articles.create({
-        url: content.url
-        , name: content.name
-        , title: content.title
-        , opt1: content.opt1
-        , opt2: content.opt2
-        , opt3: content.opt3
-        , opt4: content.opt4
-        , opt5: content.opt5
-        , content: await service._parseContent(content)
-        , status: 1
-        , lastmod: content.lastmod
-      });
+      try {
 
-      console.log('\t @ contents :: ', inserted.id, ", ", inserted.opt1);
+        let inserted = await dbm.Articles.create({
+          url: content.url
+          , name: content.name
+          , title: content.title
+          , opt1: content.opt1
+          , opt2: content.opt2
+          , opt3: content.opt3
+          , opt4: content.opt4
+          , opt5: content.opt5
+          , content: await service._parseContent(content)
+          , status: 1
+          , lastmod: content.lastmod
+        });
+
+        console.log('\t @ contents :: ', inserted.id, ", ", inserted.opt1);
+
+      } catch(err) {
+        let inserted = await dbm.Articles.create({
+          url: content.url
+          , name: content.name
+          , title: content.title
+          , opt1: content.opt1
+          , opt2: content.opt2
+          , opt3: content.opt3
+          , opt4: content.opt4
+          , opt5: content.opt5
+          , status: 0
+          , lastmod: content.lastmod
+        });
+        console.log('\t @ contents :: ', inserted.id, ", ", inserted.opt1);
+      }
 
       content.status = 5;
       content.save();
@@ -262,10 +228,12 @@ gulp.task('test:daily', async function(cb){
 
       gnu.addArticle({
         board: cateId,
-        subject: content.title,
-        content: parsed.content,
+        wr_subject: content.title,
+        wr_content: parsed.content,
+        wr_link1: ' ',
+        wr_link2: ' ',
         wr_url: content.url,
-        datetime: content.lastmod,
+        wr_datetime: content.lastmod
       });
 
       content.status = 2;

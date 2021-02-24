@@ -8,6 +8,8 @@ const crawl = require('../utility/crawl');
 const logger = require('../utility/logger');
 const dbm = require('../database/mariadb')
 
+const IMG_EXT = [".jpg", ".gif", ".png", ".jpeg"];
+
 async function getSitemap (siteUrl) {
 
   let sitemap = await crawl.getXmlToJson(siteUrl);
@@ -43,8 +45,6 @@ async function crawlContent (args) {
 
     let html = $(".board_content").html();
 
-    logger.info(title);
-
     let params = args.url.split('?')[1].split('&');
 
     let value = {title: title, content: html, status: 1};
@@ -78,7 +78,7 @@ async function parseContent (content) {
       const src = $img.attribs['src'];
 
       if(src.indexOf("?") > 0){
-        src = src.substring(src, src.indexOf("?"));
+        src = src.substring(0, src.indexOf("?"));
       }
 
       let imgPath = src;
@@ -132,10 +132,23 @@ async function _parseContent (content) {
 
     for(const $img of $imgs){
 
-      const src = $img.attribs['src'];
+      const imgSrc = $img.attribs['src'];
 
-      if(src.indexOf("?") > 0){
-        src = src.substring(src, src.indexOf("?"));
+      if(!imgSrc) continue;
+
+      let src = imgSrc;
+
+      if(src && src.indexOf("?") > 0){
+        src = src.substring(0, src.indexOf("?"));
+        if(IMG_EXT.indexOf(path.extname(src)) < 0){
+          let thumb = imgSrc.substring(imgSrc.indexOf("?") + 1);
+          for(const [k,v] of thumb.split("&").map(el=>el.split("="))){
+            if(k === 'thumb'){
+              src = decodeURIComponent(v);
+              break;
+            }
+          }
+        }
       }
 
       let imgPath = src;
@@ -156,10 +169,12 @@ async function _parseContent (content) {
       }
 
       let response = await axios.get(src, {responseType: 'stream'})
-      const writer = fs.createWriteStream(siteImgPath)
-      let result = await response.data.pipe(writer);
 
-      html = html.replace(src, imgPath)
+      if(response.status === 200) {
+        const writer = fs.createWriteStream(siteImgPath)
+        let result = await response.data.pipe(writer);
+        html = html.replace(src, imgPath)
+      }
 
     }
 
