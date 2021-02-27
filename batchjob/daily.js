@@ -86,8 +86,7 @@ module.exports.daily = async function(){
 
           const cateId = value.opt1.split("=")[1];
 
-          gnu.addArticle({
-            board: cateId,
+          gnu.addArticle(cateId, {
             wr_subject: article.title,
             wr_content: article.content,
             wr_link1: ' ',

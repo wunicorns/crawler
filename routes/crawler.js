@@ -44,28 +44,31 @@ router.get('/crawl/contents/:id', async (req, res, next)=>{
 
     console.log(req.params);
 
-    let content = await dbm.Articles.findOne({
-      where: { id: args.id }
+    const id = req.params.id
+
+    let article = await dbm.Articles.findOne({
+      where: { id: id }
     });
 
-    console.log('\t @ contents :: ', content.id, ", ", content.opt1);
+    console.log('\t @ contents :: ', article.id, ", ", article.opt1);
 
-    const cateId = content.opt1.split("=")[1];
+    const cateId = article.opt1.split("=")[1];
 
     const gnu = GnuboardHelper.build()
 
-    gnu.addArticle({
-      board: cateId,
-      subject: content.title,
-      content: content.content,
-      wr_url: content.url,
-      datetime: content.lastmod,
+    gnu.addArticle(cateId, {
+      wr_subject: article.title,
+      wr_content: article.content,
+      wr_link1: ' ',
+      wr_link2: ' ',
+      wr_url: article.url,
+      wr_datetime: article.lastmod
     });
 
-    content.status = 2;
-    content.save();
+    article.status = 2;
+    article.save();
 
-    res.json(parsed);
+    res.json(article);
 
   }catch(err){
     next(err);

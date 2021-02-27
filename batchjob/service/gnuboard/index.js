@@ -120,7 +120,7 @@ class GnuboardHelper {
 
   }
 
-  async addArticle(arg){
+  async addArticle(boardId, arg){
 
     try {
 
@@ -128,7 +128,7 @@ class GnuboardHelper {
 
         let articleTemplate = require('./article.json')
 
-        const boardId = arg.board;
+        // const boardId = arg.board;
 
         let boardData = Object.assign({}, articleTemplate, arg)
 
@@ -141,6 +141,8 @@ class GnuboardHelper {
         let sql = ` insert into g5_write_${boardId} (${columns}) values (${columnValues}) `;
 
         let result = await this.database.insert(sql, values);
+
+        await this.database.execute(` update g5_board set bo_count_write = (select count(*) from g5_write_${boardId}) where bo_table = '${boardId}' `);
 
         console.log(result);
 

@@ -226,8 +226,7 @@ gulp.task('test:daily', async function(cb){
 
       const gnu = GnuboardHelper.build()
 
-      gnu.addArticle({
-        board: cateId,
+      gnu.addArticle(cateId, {
         wr_subject: content.title,
         wr_content: parsed.content,
         wr_link1: ' ',

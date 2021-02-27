@@ -145,7 +145,7 @@
                     <td>{{moddt}}</td>
                     <td>{{crawldt}}</td>
                     <td>
-                      <button type="button" class="btn btn-success btn_clicked">USE</button>
+                      <button type="button" class="btn btn-success btn_use">USE</button>
                     </td>
                   </tr>
                 {{/contents}}
@@ -244,7 +244,7 @@ function empty(){
     });
 
 
-    $(".btn_clicked").click(function(){
+    $(".btn_use").click(function(){
 
       var id = $(this).closest("tr").attr("id");
 
