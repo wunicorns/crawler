@@ -3,18 +3,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const engines = require('consolidate');
 
-
 global.globalRequire = function(libPath) {
   return require(path.join(__dirname + '/' + libPath))
 }
 
-const {requestHandler, errorHandler} = require('./middleware');
+const {requestHandler
+  , errorHandler
+  , permissionHandler} = require('./middleware');
 
 const {router: crawlerRoutes} = require('./routes/crawler');
-const viewRouter = require('./routes/view');
+const viewRouter = require('./routes/site');
 
 const crawl = require('./utility/crawl');
-
 
 const PORT = 4000;
 

@@ -1,4 +1,5 @@
 {
+  "secretKey": "secret",
   "database": {
     "host": "localhost",
     "port": 3306,

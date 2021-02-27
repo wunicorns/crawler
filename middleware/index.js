@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 function requestHandler(req, res, next){
 
     console.log('################################################');
@@ -20,7 +22,23 @@ function errorHandler(err, req, res, next) {
     }
 }
 
+
+function permissionHandler(req, res, next){
+
+
+
+
+}
+
+
+
+
+
+
+
+
 module.exports = {
     requestHandler,
-    errorHandler
+    errorHandler,
+    permissionHandler
 }
