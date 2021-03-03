@@ -7,9 +7,9 @@ global.globalRequire = function(libPath) {
   return require(path.join(__dirname + '/' + libPath))
 }
 
-const {requestHandler
-  , errorHandler
-  , permissionHandler} = require('./middleware');
+const {requestHandler} = require('./middleware/request-handler');
+const {errorHandler} = require('./middleware/error-handler');
+const {permissionHandler} = require('./middleware/permission-handler');
 
 const {router: crawlerRoutes} = require('./routes/crawler');
 const viewRouter = require('./routes/site');
@@ -36,9 +36,6 @@ const app = express();
   app.use(errorHandler);
 
   app.set('views', __dirname + '/views');
-
-  // app.set('view engine', 'ejs');
-  // app.engine('html', require('ejs').renderFile);
 
   app.engine('html', engines.mustache);
   app.set('view engine', 'html');

@@ -50,7 +50,7 @@
       <input id="txt_target_url" class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
+          <a class="nav-link link_signout" href="logout">Sign out</a>
         </li>
       </ul>
     </header>
@@ -84,7 +84,7 @@
             <h1 class="h2">Articles</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="row g-2">
-                <div class="col-md">
+                <div class="col-md display-none">
                   <div class="form">
                     <div class="btn-group me-2">
                       <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -97,10 +97,10 @@
                   <div class="form">
                     <select id="status" name="status" class="form-select" aria-label="">
                       <option selected>Status</option>
-                      <option value="0">Not</option>
-                      <option value="1">success</option>
-                      <option value="2">failed</option>
-                      <option value="3">new</option>
+                      <option value="0">저장됨</option>
+                      <option value="1">수집 완료</option>
+                      <option value="2">등록 완료</option>
+                      <option value="3">오류</option>
                     </select>
                   </div>
                 </div>
@@ -152,7 +152,7 @@
               </tbody>
             </table>
 
-            <nav class="bottom-nav display-none" aria-label="Page navigation example">
+            <nav class="bottom-nav " aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                 <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
 
@@ -172,6 +172,7 @@
     <script src="bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src="jquery/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="jquery/jquery-ui.min.js" crossorigin="anonymous"></script>
+    <script src="js/application.js" crossorigin="anonymous"></script>
 
 <script>
 
@@ -226,36 +227,24 @@ function empty(){
 
         var targetUrl = $(this).val().trim();
 
-        fetch('api/crawl', {
-          method: 'post',
-          cache: 'no-cache',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify({
-            site: targetUrl
-          })
-        }).then(function(resp){
+        session.post('api/crawl', {
+          site: targetUrl
+        }, function(resp){
           console.log(resp);
         });
 
       }
     });
 
+    $(".link_signout").click(function(){
+        sessionStorage.clear();
+    });
 
     $(".btn_use").click(function(){
 
       var id = $(this).closest("tr").attr("id");
 
-      fetch('api/crawl/contents/' + id, {
-        method: 'get',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        }
-      }).then(function(resp){
+      session.get('api/crawl/contents/' + id, function(resp){
         console.log(resp);
       });
 

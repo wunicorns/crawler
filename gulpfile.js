@@ -106,6 +106,9 @@ gulp.task('category', async function  (cb){
 //   console.log(`category run`);
 // });
 
+// gulp.task('articles', async function(cb){
+// });
+
 gulp.task('articles', async function(cb){
 
   logger.info('start !!! ');
@@ -116,7 +119,7 @@ gulp.task('articles', async function(cb){
 
   const service = require('./service/contentsCrawler')
 
-  let contentsList = await dbm.sequelize.query(' select id from contents '
+  let contentsList = await dbm.sequelize.query(' select id from contents where status <> 5 '
     , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
 
   for(const row of contentsList){
@@ -133,44 +136,35 @@ gulp.task('articles', async function(cb){
         }
       });
 
-      if(articleCount > 0) continue;
+      if(articleCount < 1) {
+        try {
+          let inserted = await dbm.Articles.create({
+            url: content.url
+            , name: content.name
+            , title: content.title
+            , opt1: content.opt1
+            , opt2: content.opt2
+            , opt3: content.opt3
+            , opt4: content.opt4
+            , opt5: content.opt5
+            , content: await service._parseContent(content)
+            , status: 1
+            , lastmod: content.lastmod
+          });
 
-      try {
+          logger.info(`\t success @ contents :: ${inserted.id}, ${inserted.opt1} `);
 
-        let inserted = await dbm.Articles.create({
-          url: content.url
-          , name: content.name
-          , title: content.title
-          , opt1: content.opt1
-          , opt2: content.opt2
-          , opt3: content.opt3
-          , opt4: content.opt4
-          , opt5: content.opt5
-          , content: await service._parseContent(content)
-          , status: 1
-          , lastmod: content.lastmod
-        });
+          content.status = 5;
+          content.save();
 
-        console.log('\t @ contents :: ', inserted.id, ", ", inserted.opt1);
+        } catch(err) {
 
-      } catch(err) {
-        let inserted = await dbm.Articles.create({
-          url: content.url
-          , name: content.name
-          , title: content.title
-          , opt1: content.opt1
-          , opt2: content.opt2
-          , opt3: content.opt3
-          , opt4: content.opt4
-          , opt5: content.opt5
-          , status: 0
-          , lastmod: content.lastmod
-        });
-        console.log('\t @ contents :: ', inserted.id, ", ", inserted.opt1);
+          logger.error(err, `\t error -- @ contents :: ${content.id}, ${content.opt1} `);
+
+          content.status = 6;
+          content.save();
+        }
       }
-
-      content.status = 5;
-      content.save();
 
     }catch(err){
       console.error(err);
@@ -178,6 +172,21 @@ gulp.task('articles', async function(cb){
   }
 
   cb();
+
+});
+
+
+gulp.task('articles:multi', async function(cb){
+
+    logger.info(' running articles:multi !!!!! ')
+
+    const job = require('./batchjob/batch.js');
+
+    await job.start();
+
+    logger.info(' job:daily done !!!!! ')
+
+    cb();
 
 });
 
@@ -190,6 +199,81 @@ gulp.task('job:daily', async function(cb){
   const job = require('./batchjob/daily.js');
 
   await job.daily();
+
+  logger.info(' job:daily done !!!!! ')
+
+  cb();
+
+});
+
+
+gulp.task('job:daily:test', async function(cb){
+
+  logger.info(' running job:daily:test !!!!! ')
+
+  const job = require('./batchjob/daily_check.js');
+
+  await job.daily();
+
+  logger.info(' job:daily done !!!!! ')
+
+  cb();
+
+});
+
+
+gulp.task('article:insert', async function(cb){
+
+  logger.info(' running article:insert !!!!! ')
+
+  config.init();
+
+  await dbm.init();
+
+  const {GnuboardHelper} = require('./batchjob/service/gnuboard');
+
+  const service = require('./service/contentsCrawler')
+
+  let contentsList = await dbm.sequelize.query(' select id from articles where status = 1 '
+    , { type: dbm.sequelize.QueryTypes.SELECT, raw: true });
+
+
+  const gnu = GnuboardHelper.build()
+
+  for(const row of contentsList){
+    try {
+
+      let content = await dbm.Articles.findOne({
+        where: { id: row.id }
+      }, {raw: true});
+
+      console.log('====================================================');
+      console.log('\t @ contents :: ', content.id, ", ", content.opt1);
+
+      const cateId = content.opt1.split("=")[1];
+
+      gnu.addArticle(cateId, {
+        wr_subject: content.title,
+        wr_content: content.content,
+        wr_link1: ' ',
+        wr_link2: ' ',
+        wr_url: content.url,
+        wr_datetime: content.lastmod
+      });
+
+      content.status = 2;
+      content.save();
+
+      console.log('\t - contents :: ', content.id , ' done!');
+
+    }catch(err){
+      console.error(err);
+    }
+  }
+
+  logger.info(' article:insert done !!!!! ')
+
+  cb();
 
 });
 

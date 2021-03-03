@@ -112,7 +112,6 @@ class GnuboardHelper {
       console.error(err);
     }finally {
       this.database.close();
-      cb();
     }
   }
 
@@ -150,7 +149,7 @@ class GnuboardHelper {
 
     } catch(err){
       console.error(err);
-    }finally {
+    } finally {
 
     }
 

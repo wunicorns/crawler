@@ -1,50 +1,59 @@
 const cp = require('child_process');
 const numCPUs = require('os').cpus().length;
 
+const { Sequelize } = require('sequelize');
+
 const dbm = require('../database/mariadb')
 const config = require('../config')
 
-config.init();
+async function start (){
 
-dbm.init().then(async ()=>{
+  config.init();
 
-  const totalCount = (await dbm.Contents.findOne({
-    attributes: [[dbm.sequelize.fn('count', '*'), 'cnt']],
-    where: {status: 0},
-    raw: true
-  })).cnt;
+  dbm.init().then(async ()=>{
+    const Op = Sequelize.Op;
 
-  const eachCount = parseInt(totalCount / numCPUs);
+    const totalCount = (await dbm.Contents.findOne({
+      attributes: [[dbm.sequelize.fn('count', '*'), 'cnt']],
+      where: {status: {[Op.ne]: 5}},
+      raw: true
+    })).cnt;
 
-  const jobList = [];
+    const eachCount = parseInt(totalCount / numCPUs);
 
-  for(var i = 0 ; i < numCPUs ; i++){
+    const jobList = [];
 
-    // const job = cp.fork(`${__dirname}/utility/job.js`, [i]);
-    const job = cp.fork(`./utility/job.js`, [i]);
+    for(var i = 0 ; i < numCPUs ; i++){
 
-    job.on('message', (m) => {
+      const job = cp.fork(`batchjob/utility/job_batch.js`, [i]);
 
-      console.log('PARENT got message: ', m.jobId, ', ', m.initialized);
+      job.on('message', (m) => {
 
-      job.send({
-        status: 1,
-        limit: eachCount,
-        last: (i + 1) === numCPUs
+        console.log('PARENT got message: ', m.jobId, ', ', m.initialized);
+
+        job.send({
+          limit: eachCount,
+          last: (i + 1) === numCPUs
+        });
+
       });
 
-    });
+      jobList.push({
+        jobId: i, job
+      });
 
-    jobList.push({
-      jobId: i, job
-    });
+    }
 
-  }
+  })
+  .then(()=>{
+      dbm.sequelize.close();
+  })
+  .catch(err=>{
+    console.error(err);
+  });
 
-})
-.then(()=>{
-    dbm.sequelize.close();
-})
-.catch(err=>{
-  console.error(err);
-});
+}
+
+module.exports = {
+  start
+}

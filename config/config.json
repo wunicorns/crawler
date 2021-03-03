@@ -1,5 +1,12 @@
 {
   "secretKey": "secret",
+  "target": {
+    "host": "localhost",
+    "port": 3306,
+    "username": "webcnt",
+    "password": "webcnt1!",
+    "name": "webcnt"
+  },
   "database": {
     "host": "localhost",
     "port": 3306,

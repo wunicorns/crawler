@@ -4,9 +4,12 @@ const mariadb  = require('mariadb');
 
 class Database {
   constructor(config){
-    this.initialized = false
-    this.config = config;
-    this.init();
+    var _self = this;
+    _self.initialized = false
+    _self.config = config;
+    (async function(){
+      await _self.init();
+    })();
   }
 
   async init () {
@@ -15,7 +18,7 @@ class Database {
 
     try {
 
-      this.pool = mariadb.createPool({
+      this.conn = await mariadb.createConnection({
         host: config.database.host,
         user: config.database.username,
         // port: config.database.port,
@@ -33,60 +36,61 @@ class Database {
   }
 
   async close (){
-    await this.pool.end();
+    await this.conn.end();
   }
 
   async select(sql){
-    const conn = await this.pool.getConnection();
+    // const conn = await this.pool.getConnection();
     try {
-      return await conn.query(sql)
+      return await this.conn.query(sql)
     } catch(err){
       console.error(err);
     } finally {
-      conn.release();
+      // conn.release();
+      await this.conn.end();
     }
   }
 
   async insert (sql, values){
-    const conn = await this.pool.getConnection();
+    // const conn = await this.pool.getConnection();
     try {
-      return await conn.query(sql, values);
+      // console.log(this.conn);
+      return await this.conn.query(sql, values);
     } catch(err){
       console.error(err);
     } finally {
-      conn.release();
+      this.conn.end();
     }
 
   }
 
   async execute (sql){
-    const conn = await this.pool.getConnection();
+    // const conn = await this.pool.getConnection();
     try {
-      return await conn.query(sql);
+      return await this.conn.query(sql);
     } catch(err){
       console.error(err);
     } finally {
-      conn.release();
+      this.conn.end();
     }
   }
 
   async beginTransaction (){
-    const conn = await this.pool.getConnection();
     try {
-      return conn;
+      return this.conn;
     } catch(err){
       console.error(err);
     } finally {
-      conn.release();
+      this.conn.end();
     }
   }
 
   async commit (conn){
-    await conn.commit();
+    await this.conn.commit();
   }
 
   async rollback (conn){
-    await conn.rollback();
+    await this.conn.rollback();
   }
 
 

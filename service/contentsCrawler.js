@@ -17,15 +17,16 @@ async function getSitemap (siteUrl) {
   let jobs = [];
   for(const rst1 of sitemap.sitemapindex.sitemap){
     let sitemap = rst1.loc[0];
-    console.log(sitemap, " :: running. ");
+    logger.info(sitemap + " :: running. ");
     let data = await crawl.getXmlToJson(sitemap);
     for(const content of data.urlset.url){
-      console.log("\t-", content.loc[0]);
+      logger.info("\t-" + content.loc[0]);
       let inserted = await dbm.Contents.create({
         url: content.loc[0],
         lastmod: new Date(content.lastmod[0])
       });
-      console.log(inserted.id);
+
+      logger.info(inserted.id);
 
     }
   }
@@ -56,7 +57,7 @@ async function crawlContent (args) {
     return Object.assign({}, value, args);
 
   }catch(err){
-    console.log('error :: crawlContentDetail');
+    logger.error(err, 'error :: crawlContentDetail');
     throw err;
   }
 };
@@ -64,6 +65,10 @@ async function crawlContent (args) {
 async function parseContent (content) {
 
   try {
+
+    const requst = axios.create();
+
+    requst.defaults.timeout = 5000;
 
     const siteRoot = '/home/webcnt/web';
 
@@ -98,11 +103,15 @@ async function parseContent (content) {
         fs.rmSync(siteImgPath);
       }
 
-      let response = await axios.get(src, {responseType: 'stream'})
-      const writer = fs.createWriteStream(siteImgPath)
-      let result = await response.data.pipe(writer);
+      let response = await requst.get(src, {
+        responseType: 'stream'
+      });
 
-      html = html.replace(src, imgPath)
+      if(response.status === 200) {
+        const writeStream = fs.createWriteStream(siteImgPath)
+        await response.data.pipe(writeStream);
+        html = html.replace(src, imgPath)
+      }
 
     }
 
@@ -111,7 +120,7 @@ async function parseContent (content) {
     return content;
 
   }catch(err){
-    console.log('error :: parseContent');
+    logger.error (err, 'error :: parseContent');
     // console.error(err);
     throw err;
   }
@@ -121,6 +130,10 @@ async function parseContent (content) {
 async function _parseContent (content) {
 
   try {
+
+    const requst = axios.create();
+
+    requst.defaults.timeout = 5000;
 
     const siteRoot = '/home/webcnt/web';
 
@@ -168,20 +181,25 @@ async function _parseContent (content) {
         fs.rmSync(siteImgPath);
       }
 
-      let response = await axios.get(src, {responseType: 'stream'})
+      logger.info(`\t\t\t - image :: ${siteImgPath} `);
+
+      let response = await requst.get(src, {
+        responseType: 'stream'
+      });
 
       if(response.status === 200) {
-        const writer = fs.createWriteStream(siteImgPath)
-        let result = await response.data.pipe(writer);
-        html = html.replace(src, imgPath)
+        const writeStream = fs.createWriteStream(siteImgPath);
+        await response.data.pipe(writeStream);
+        html = html.replace(src, imgPath);
       }
 
+      logger.info(`\t\t\t - image :: done. `);
     }
 
     return html;
 
   }catch(err){
-    console.log('error :: parseContent');
+    logger.info(`error :: parseContent`);
     // console.error(err);
     throw err;
   }
@@ -211,7 +229,7 @@ async function crawlContentDetail (args) {
     return Object.assign({}, value, args);
 
   }catch(err){
-    console.log('error :: crawlContentDetail');
+    logger.error(err, 'error :: crawlContentDetail');
     throw err;
   }
 };
@@ -232,8 +250,7 @@ async function updateContentDetail (args) {
     return value;
 
   }catch(err){
-    console.log('error :: updateContentDetail');
-    // console.log(args);
+    logger.error(err, 'error :: updateContentDetail');    
     // console.error(err);
     throw err;
   }
@@ -274,7 +291,7 @@ async function getParsedContent (args) {
     return [await parseContent(content), content];
 
   }catch(err){
-    console.log('error :: getParsedContent');
+    logger.error(err, 'error :: getParsedContent');
     // console.error(err);
     throw err;
   }
@@ -286,7 +303,7 @@ async function getPageLink (siteUrl) {
     const $ = await crawl.getDocument(siteUrl);
 
     $("a").map((el)=>{
-      console.log(el);
+      logger.info(el);
     })
 
 };

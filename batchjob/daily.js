@@ -12,7 +12,7 @@ const {GnuboardHelper} = require('./service/gnuboard');
 
 module.exports.daily = async function(){
 
-  console.log('daily job start')
+  logger.info('daily job start')
 
   config.init();
 
@@ -28,89 +28,120 @@ module.exports.daily = async function(){
     '/life/'
   ];
 
-  let links = [];
-  for( const url of urls ){
-    logger.info(' crawl :: ' + url);
-    const $ = await crawl.getDocument(domain + url);
-    for(const a of $(".wrap_left").find("a")){
-      let href = a.attribs['href'];
+  const linkMap = {};
+  for( const _url of urls ){
+    logger.info(' crawl :: ' + _url);
+    const $ = await crawl.getDocument(domain + _url);
+    const lefLink = $(".wrap_left").find("a");
+
+    let links = [];
+    for(const a of lefLink){
+      let href = $(a).attr("href");
+      let txt = $(a).text();
       if(href.indexOf("bbs/list")>-1){
-        links.push(a.attribs['href']);
+        links.push(href);
       }
     }
+
+    linkMap[_url] = links.filter((l, i)=>links.indexOf(l)===i);
+
   }
 
-  links = links.filter((l, i)=>links.indexOf(l)===i);
-
-  let remainCount = links.length;
-
-  if(remainCount < 1) return;
-
-  const gnu = GnuboardHelper.build();
 
   try {
 
-    for(const link of links){
+    for(k in linkMap){
 
-      const $ = await crawl.getDocument(domain + link);
+      let links = linkMap[k];
+      let remainCount = links.length;
+      logger.info(`${k} :: count = ${remainCount}`);
+      if(remainCount < 1) continue;
 
-      console.log(link);
+      for(const link of links){
 
-      for(const tr of $("div.board_list_wrap tbody").find("tr")){
-        try {
+        logger.info(`\t - ${link}`);
 
-          const childs = $(tr).find("td");
-          const dt = childs[childs.length - 1].children[0].data;
+        const $ = await crawl.getDocument(domain + link);
 
-          const aTag = $(childs[0].children.filter((el,i)=>el.name==='a')[0]);
+        const trs = $("div.board_list_wrap tbody").find("tr");
 
-          const url = domain + aTag.attr('href');
+        let subCount = trs.length;
 
-          let value = await service.crawlContent({
-            url: url,
-            status: 1,
-            lastmod: new Date(dt)
-          });
+        logger.info(`\t\t @ crawled :: ${subCount}`);
 
-          let articleCount = await dbm.Articles.count({
-            where: { url: url }
-          });
+        for(const tr of trs){
 
-          console.log("\t", remainCount--, aTag.text(), ' :: crawl - ', (articleCount > 0 ? "exist" : "new"));
+          try {
 
-          if(articleCount > 0) continue;
+            const childs = $(tr).find("td");
+            const dt = childs[childs.length - 1].children[0].data;
+            const aTag = $(childs[0].children.filter((el,i)=>el.name==='a')[0]);
+            const url = domain + aTag.attr('href');
 
-          let inserted = await dbm.Articles.create(value);
+            let articleCount = await dbm.Articles.count({where: { url: url }});
 
-          let article = await service.parseContent(inserted);
+            logger.info(`\t\t\t - ${url}`);
+            logger.info(`\t\t\t\t ${subCount} - ${(articleCount > 0 ? "exist" : "new")} / ${aTag.text()} :: crawl`);
 
-          const cateId = value.opt1.split("=")[1];
+            if(articleCount > 0) {
 
-          gnu.addArticle(cateId, {
-            wr_subject: article.title,
-            wr_content: article.content,
-            wr_link1: ' ',
-            wr_link2: ' ',
-            wr_url: article.url,
-            wr_datetime: article.lastmod
-          });
+            } else {
 
-          inserted.status = 2;
-          inserted.content = article.content;
-          inserted.save();
+              const gnu = GnuboardHelper.build();
 
-          console.log(' \t :: ', article.id, ", remain :: ", remainCount);
+              try {
 
-        } catch (error){
-          // console.log(error);
-          logger.error(error);
+                let value = await service.crawlContent({
+                  url: url,
+                  status: 1,
+                  lastmod: new Date(dt)
+                });
+
+                let inserted = await dbm.Articles.create(value);
+                let article = await service.parseContent(inserted);
+
+                const cateId = value.opt1.split("=")[1];
+
+                logger.info(`\t\t\t\t - @ parsed remain :: ${subCount} ${url}`);
+
+                gnu.addArticle(cateId, {
+                  wr_subject: article.title,
+                  wr_content: article.content,
+                  wr_link1: ' ',
+                  wr_link2: ' ',
+                  wr_url: article.url,
+                  wr_datetime: article.lastmod
+                });
+
+                logger.info(`\t\t\t\t @ gnu added`);
+
+                inserted.status = 2;
+                inserted.content = article.content;
+                inserted.save();
+
+                logger.info(`\t\t\t\t :: ${article.id}, remain :: ${subCount}`);
+
+              } catch(_err) {
+                logger.error(_err);
+              } finally {
+                await gnu.close();
+              }
+
+            }
+
+            subCount--;
+
+          } catch (error){
+            // console.log(error);
+            logger.error(error);
+          }
         }
       }
+
     }
 
   } finally {
-    await gnu.close();
-    console.log("@job:daily done");
+    logger.info("@job:daily done");
   }
 
 }

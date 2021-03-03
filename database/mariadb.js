@@ -13,13 +13,13 @@ let db = {
       dialectOptions: {
         charset: 'utf8',
         collate: 'utf8_general_ci',
-      },
-      pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
       }
+      // ,pool: {
+      //   max: 5,
+      //   min: 3,
+      //   acquire: 50000,
+      //   idle: 30000
+      // }
     });
 
     try {
@@ -35,7 +35,34 @@ let db = {
     db.ContentsParsed = model.ContentsParsed;
     db.Articles = model.Articles;
 
+  },
+
+  checkAccount: async function(args){
+
+    const service = global.config.target;
+
+    const sequelize = new Sequelize(service.name, args.username, args.password, {
+      host: service.host,
+      port: service.port,
+      logging: console.log,
+      dialect: 'mariadb',
+      dialectOptions: {
+        charset: 'utf8',
+        collate: 'utf8_general_ci',
+      }
+    });
+
+    try {
+      await sequelize.authenticate();
+      return true;
+    } catch (error) {
+      return false;
+    } finally {
+      await sequelize.close();
+    }
+
   }
+
 }
 
 module.exports = db;

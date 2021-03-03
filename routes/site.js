@@ -1,7 +1,10 @@
 const express = require('express');
 const jwt = require('../utility/jwt');
-const dbm = require('../database/mariadb');
 const uuid = require('uuid')
+
+const dbm = global.globalRequire('database/mariadb');
+
+const articles = require('../service/articles');
 
 const router = express.Router();
 
@@ -30,21 +33,43 @@ router.get('/session', async (req, res, next)=>{
   }
 });
 
+router.get('/logout', async (req, res, next)=>{
+  try {
+
+    //req.header.
+
+
+    res.render('login', {});
+
+  }catch(error){
+    next(error);
+  }
+});
+
 router.post('/login', async (req, res, next)=>{
   try {
 
     const userid = req.body.userid;
     const passwd = req.body.passwd;
 
-    const token = await jwt.createToken({
-      id: userid,
-      uid: uuid.v4()
+    const auth = await dbm.checkAccount({
+      username: userid,
+      password: passwd
     });
 
-    res.json({
-      error: 0,
-      access_token: token
-    });
+    if(auth){
+      const token = await jwt.createToken({
+        id: userid,
+        uid: uuid.v4()
+      });
+
+      res.json({
+        error: 0,
+        access_token: token
+      });
+    } else {
+      res.json({error: 1});
+    }
 
   } catch(error) {
     next(error);
@@ -58,36 +83,13 @@ router.get('/', async (req, res, next)=>{
     let offset = 0;
     let limit = 30;
 
-    let categories = await dbm.Articles.findAll({
-      attributes: ['opt1', [dbm.sequelize.fn('count', '*'), 'cnt']],
-      group: ['opt1'],
-      raw: true
-    })
+    let categories = await articles.getArticleGroups();
 
-    var whereCondition = {};
-
-    if(req.query.status){
-      whereCondition['status'] = req.query.status;
-    }
-
-    if(req.query.category){
-      whereCondition['opt1'] = req.query.category;
-    }
-
-    const op = dbm.sequelize;
-
-    let {rows, count} = await dbm.Articles.findAndCountAll({
-      attributes: {
-        include: [
-          [op.fn('date_format', op.col('lastmod'), '%Y-%m-%d'), 'moddt'],
-          [op.fn('date_format', op.col('createDt'), '%Y-%m-%d'), 'crawldt']
-        ]
-      },
-      offset: offset,
-      limit: limit,
-      where: whereCondition,
-      raw: true,
-      order: [['lastmod', 'desc']]
+    let {rows, count} = await articles.getArticles({
+      status: req.query.status || '',
+      category: req.query.category || '',
+      offset,
+      limit
     });
 
     res.render('index', {
