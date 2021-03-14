@@ -7,9 +7,9 @@ class Database {
     var _self = this;
     _self.initialized = false
     _self.config = config;
-    (async function(){
-      await _self.init();
-    })();
+    // (async function(){
+    //
+    // })();
   }
 
   async init () {
@@ -58,9 +58,11 @@ class Database {
       return await this.conn.query(sql, values);
     } catch(err){
       console.error(err);
-    } finally {
-      this.conn.end();
+      if(this.conn) await this.conn.end();
     }
+    // finally {
+    //   this.conn.end();
+    // }
 
   }
 
@@ -70,9 +72,11 @@ class Database {
       return await this.conn.query(sql);
     } catch(err){
       console.error(err);
-    } finally {
-      this.conn.end();
+      if(this.conn)await this.conn.end();
     }
+    // finally {
+    //   this.conn.end();
+    // }
   }
 
   async beginTransaction (){

@@ -10,23 +10,13 @@ const service = require('../service/contentsCrawler')
 
 const {GnuboardHelper} = require('./service/gnuboard');
 
-module.exports.daily = async function(){
+module.exports.daily = async function(domain, urls){
 
   logger.info('daily job start')
 
   config.init();
 
   await dbm.init();
-
-  const domain = 'https://www.mimint.co.kr';
-
-  const urls = [
-    '/talk/',
-    '/food_n/',
-    '/baby_n/',
-    '/love_n/',
-    '/life/'
-  ];
 
   const linkMap = {};
   for( const _url of urls ){
@@ -46,7 +36,6 @@ module.exports.daily = async function(){
     linkMap[_url] = links.filter((l, i)=>links.indexOf(l)===i);
 
   }
-
 
   try {
 
@@ -124,22 +113,28 @@ module.exports.daily = async function(){
               } catch(_err) {
                 logger.error(_err);
               } finally {
-                await gnu.close();
+                //await gnu.close();
               }
 
             }
 
             subCount--;
 
-          } catch (error){
-            // console.log(error);
-            logger.error(error);
+          } catch (error_2){
+            logger.error(error_2);
           }
         }
+
+        logger.info(`\t\t @ crawled :: done`);
       }
 
+      logger.info(`\t\t @ links :: done`);
     }
 
+    logger.info(`\t\t @ linkMap :: done`);
+
+  } catch(error_1){
+    logger.error(error_1);
   } finally {
     logger.info("@job:daily done");
   }

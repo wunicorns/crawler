@@ -198,12 +198,72 @@ gulp.task('job:daily', async function(cb){
 
   const job = require('./batchjob/daily.js');
 
-  await job.daily();
+  const domain = 'https://www.mimint.co.kr';
+
+  const urls = [
+    '/talk/',
+    '/food_n/',
+    '/baby_n/',
+    '/love_n/',
+    '/life/'
+  ];
+
+  await job.daily(domain, urls);
 
   logger.info(' job:daily done !!!!! ')
 
   cb();
 
+});
+
+gulp.task('job:daily:baby', async function(cb){
+  logger.info(' running job:daily !!!!! ')
+  const job = require('./batchjob/daily.js');
+  const domain = 'https://www.mimint.co.kr';
+  const urls = ['/baby_n/',];
+  await job.daily(domain, urls);
+  logger.info(' job:daily done !!!!! ')
+  cb();
+});
+
+gulp.task('job:daily:talk', async function(cb){
+  logger.info(' running job:daily !!!!! ')
+  const job = require('./batchjob/daily.js');
+  const domain = 'https://www.mimint.co.kr';
+  const urls = ['/talk/',];
+  await job.daily(domain, urls);
+  logger.info(' job:daily done !!!!! ')
+  cb();
+});
+
+gulp.task('job:daily:love', async function(cb){
+  logger.info(' running job:daily !!!!! ')
+  const job = require('./batchjob/daily.js');
+  const domain = 'https://www.mimint.co.kr';
+  const urls = ['/love_n/',];
+  await job.daily(domain, urls);
+  logger.info(' job:daily done !!!!! ')
+  cb();
+});
+
+gulp.task('job:daily:life', async function(cb){
+  logger.info(' running job:daily !!!!! ')
+  const job = require('./batchjob/daily.js');
+  const domain = 'https://www.mimint.co.kr';
+  const urls = ['/life/',];
+  await job.daily(domain, urls);
+  logger.info(' job:daily done !!!!! ')
+  cb();
+});
+
+gulp.task('job:daily:food', async function(cb){
+  logger.info(' running job:daily !!!!! ')
+  const job = require('./batchjob/daily.js');
+  const domain = 'https://www.mimint.co.kr';
+  const urls = ['/food_n/',];
+  await job.daily(domain, urls);
+  logger.info(' job:daily done !!!!! ')
+  cb();
 });
 
 

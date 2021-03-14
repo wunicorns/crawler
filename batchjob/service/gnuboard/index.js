@@ -1,4 +1,3 @@
-
 const batchConfig = global.globalRequire('batchjob/config');
 const {Database} = global.globalRequire('batchjob/database')
 
@@ -123,11 +122,11 @@ class GnuboardHelper {
 
     try {
 
+      await this.database.init();
+
       if(this.database.initialized){
 
         let articleTemplate = require('./article.json')
-
-        // const boardId = arg.board;
 
         let boardData = Object.assign({}, articleTemplate, arg)
 
@@ -139,24 +138,25 @@ class GnuboardHelper {
 
         let sql = ` insert into g5_write_${boardId} (${columns}) values (${columnValues}) `;
 
-        let result = await this.database.insert(sql, values);
+        console.log(`\t gnu insert`);
 
-        await this.database.execute(` update g5_board set bo_count_write = (select count(*) from g5_write_${boardId}) where bo_table = '${boardId}' `);
+        let insertResult = await this.database.insert(sql, values);
+        let boardUpdate = await this.database.execute(` update g5_board set bo_count_write = (select count(*) from g5_write_${boardId}) where bo_table = '${boardId}' `);
 
-        console.log(result);
+        console.log(`\t gnu ${insertResult.insertId}, board updated : ${boardUpdate.affectedRows}`);
 
       }
 
     } catch(err){
       console.error(err);
     } finally {
-
+      await this.database.close();
     }
 
   }
 
   async close(){
-    this.database.close();
+    await this.database.close();
   }
 
   async getArticles(){
